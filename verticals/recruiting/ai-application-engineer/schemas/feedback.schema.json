@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/ai-application-engineer/feedback.schema.json",
+  "title": "AIApplicationEngineerFeedback",
+  "description": "AI 应用工程师岗位的反馈回流 schema。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "task_type",
+    "jd_id",
+    "candidate_id",
+    "report_id",
+    "workflow_stage",
+    "input_snapshot",
+    "ai_output_snapshot",
+    "final_outcome",
+    "accepted",
+    "score",
+    "collected_at",
+    "version"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "task_type": {
+      "type": "string",
+      "const": "ai_application_engineer_recommendation"
+    },
+    "jd_id": { "type": "string" },
+    "candidate_id": { "type": "string" },
+    "report_id": { "type": "string" },
+    "workflow_stage": {
+      "type": "string",
+      "enum": [
+        "jd_intake",
+        "match_evaluation",
+        "recommendation_report",
+        "client_sync",
+        "interview",
+        "offer",
+        "onboarding"
+      ]
+    },
+    "input_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "jd_version": { "type": "string" },
+        "candidate_version": { "type": "string" },
+        "report_version": { "type": "string" },
+        "key_signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_materials": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ai_output_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["strong_recommend", "recommend", "cautious_recommend", "do_not_recommend"]
+        },
+        "summary": { "type": "string" },
+        "score": { "type": "number", "minimum": 0, "maximum": 10 },
+        "notable_risks": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "human_edit_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "edited_sections": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "change_summary": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "final_outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "reason"],
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": ["passed", "failed", "pending", "withdrawn"]
+        },
+        "reason": { "type": "string" },
+        "offer_status": {
+          "type": "string",
+          "enum": ["none", "offered", "accepted", "rejected", "unknown"]
+        },
+        "onboarding_status": {
+          "type": "string",
+          "enum": ["not_started", "started", "completed", "failed", "unknown"]
+        },
+        "client_feedback": { "type": "string" },
+        "candidate_feedback": { "type": "string" }
+      }
+    },
+    "accepted": { "type": "boolean" },
+    "score": { "type": "number", "minimum": 0, "maximum": 10 },
+    "failure_modes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "improvement_actions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lessons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "collector": { "type": "string" },
+    "collected_at": { "type": "string", "format": "date-time" },
+    "version": { "type": "string" }
+  }
+}

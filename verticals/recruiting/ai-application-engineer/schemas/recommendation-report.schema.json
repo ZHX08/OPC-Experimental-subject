@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/ai-application-engineer/recommendation-report.schema.json",
+  "title": "AIApplicationEngineerRecommendationReport",
+  "description": "AI 应用工程师候选人推荐报告 schema。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "jd_id",
+    "candidate_id",
+    "role_title",
+    "headline",
+    "scenario_context",
+    "match_overview",
+    "engineering_evidence",
+    "risk_analysis",
+    "evaluation_plan",
+    "recommendation",
+    "follow_up_questions",
+    "generated_at",
+    "version"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "report_title": { "type": "string" },
+    "jd_id": { "type": "string" },
+    "candidate_id": { "type": "string" },
+    "candidate_name": { "type": "string" },
+    "role_title": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "version": { "type": "string" },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "summary", "overall_score"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["strong_recommend", "recommend", "cautious_recommend", "do_not_recommend"]
+        },
+        "summary": { "type": "string" },
+        "overall_score": { "type": "number", "minimum": 0, "maximum": 10 }
+      }
+    },
+    "scenario_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["business_scenario", "why_this_role", "success_standard"],
+      "properties": {
+        "business_scenario": { "type": "string" },
+        "product_stage": { "type": "string" },
+        "target_users": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "why_this_role": { "type": "string" },
+        "success_standard": { "type": "string" },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "match_overview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strengths", "gaps", "must_have_result", "overall_assessment"],
+      "properties": {
+        "strengths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "must_have_result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requirement", "status"],
+            "properties": {
+              "requirement": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["met", "partial", "missing", "unknown"]
+              },
+              "evidence": { "type": "string" }
+            }
+          }
+        },
+        "nice_to_have_result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["requirement", "status"],
+            "properties": {
+              "requirement": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["met", "partial", "missing", "unknown"]
+              },
+              "evidence": { "type": "string" }
+            }
+          }
+        },
+        "overall_assessment": { "type": "string" }
+      }
+    },
+    "engineering_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["area", "evidence", "impact", "proof_type", "verification_status"],
+        "properties": {
+          "area": {
+            "type": "string",
+            "description": "Prompt / RAG / workflow / tool calling / backend / deployment 等。"
+          },
+          "evidence": { "type": "string" },
+          "impact": { "type": "string" },
+          "proof_type": {
+            "type": "string",
+            "description": "Demo、仓库、截图、评测记录、上线记录等。"
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": ["confirmed", "partial", "needs_follow_up"]
+          },
+          "links": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "fit_matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "score", "rationale"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "score": { "type": "number", "minimum": 0, "maximum": 10 },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "risk_analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risks", "not_fit_tasks", "verification_needed"],
+      "properties": {
+        "risks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "not_fit_tasks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "verification_needed": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "fallback_and_escapes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "evaluation_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trial_focus", "success_metrics", "feedback_loop"],
+      "properties": {
+        "trial_focus": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "success_metrics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "feedback_loop": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "time_box": { "type": "string" },
+        "human_review_points": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "reason", "next_step"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["strong_recommend", "recommend", "cautious_recommend", "do_not_recommend"]
+        },
+        "reason": { "type": "string" },
+        "next_step": { "type": "string" },
+        "interviewer_questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "source_materials": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": { "type": "string" }
+  }
+}

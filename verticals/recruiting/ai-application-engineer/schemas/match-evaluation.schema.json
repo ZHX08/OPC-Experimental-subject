@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/ai-application-engineer/match-evaluation.schema.json",
+  "title": "AIApplicationEngineerMatchEvaluation",
+  "description": "AI 应用工程师候选人与 JD 的匹配评估 schema。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "jd_id",
+    "candidate_id",
+    "recommendation",
+    "overall_score",
+    "dimension_scores",
+    "must_have_checks",
+    "strengths",
+    "gaps",
+    "follow_up_questions",
+    "human_review_required",
+    "evaluated_at",
+    "version"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "jd_id": { "type": "string" },
+    "candidate_id": { "type": "string" },
+    "candidate_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "current_title": { "type": "string" },
+        "current_company": { "type": "string" },
+        "years_experience": { "type": "number" },
+        "location": { "type": "string" },
+        "target_role": { "type": "string" }
+      }
+    },
+    "match_summary": {
+      "type": "string",
+      "description": "一句话结论。"
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": ["strong_recommend", "recommend", "cautious_recommend", "do_not_recommend"]
+    },
+    "overall_score": { "type": "number", "minimum": 0, "maximum": 10 },
+    "dimension_scores": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "score", "weight", "reason"],
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "如 domain / ai_engineering / product_delivery / communication。"
+          },
+          "score": { "type": "number", "minimum": 0, "maximum": 10 },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+          "reason": { "type": "string" },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "must_have_checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["requirement", "status"],
+        "properties": {
+          "requirement": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["met", "partial", "missing", "unknown"]
+          },
+          "evidence": { "type": "string" },
+          "risk": { "type": "string" },
+          "blocking": { "type": "boolean" }
+        }
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dimension", "source_type", "detail"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "source_type": {
+            "type": "string",
+            "description": "简历、面试、项目链接、测试记录等。"
+          },
+          "detail": { "type": "string" },
+          "link": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "human_review_required": { "type": "boolean" },
+    "reviewed_by": { "type": "string" },
+    "review_notes": { "type": "string" },
+    "evaluated_at": { "type": "string", "format": "date-time" },
+    "version": { "type": "string" }
+  }
+}

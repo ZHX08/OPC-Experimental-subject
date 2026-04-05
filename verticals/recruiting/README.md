@@ -57,3 +57,4 @@
 - `knowledge/base/recruiting/skills-dictionary.md`
 - `knowledge/base/recruiting/screening-standards.md`
 - `verticals/recruiting/seed-content-plan.md`
+- `verticals/recruiting/ai-application-engineer/`（AI 应用工程师结构化 schema pack）

@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.local/schemas/ai-application-engineer/jd.schema.json",
+  "title": "AIApplicationEngineerJD",
+  "description": "AI 应用工程师岗位的结构化 JD schema。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "role_family",
+    "role_title",
+    "business_context",
+    "responsibilities",
+    "must_have",
+    "success_metrics",
+    "sourcing_keywords",
+    "version",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "JD 唯一标识。"
+    },
+    "role_family": {
+      "type": "string",
+      "const": "AI 应用工程师"
+    },
+    "role_title": {
+      "type": "string",
+      "description": "岗位标题。"
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "岗位别名，例如 LLM 应用工程师、大模型应用工程师。"
+    },
+    "seniority": {
+      "type": "string",
+      "description": "岗位级别，例如 junior / mid / senior / lead。"
+    },
+    "employment_type": {
+      "type": "string",
+      "description": "全职、兼职、外包等。"
+    },
+    "location": {
+      "type": "string",
+      "description": "工作地点或远程要求。"
+    },
+    "remote_policy": {
+      "type": "string",
+      "description": "远程、混合办公、到岗要求。"
+    },
+    "business_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_stage",
+        "product_type",
+        "target_users",
+        "problem_statement",
+        "success_definition"
+      ],
+      "properties": {
+        "product_stage": {
+          "type": "string",
+          "description": "业务或产品阶段。"
+        },
+        "product_type": {
+          "type": "string",
+          "description": "产品形态，例如 SaaS、内部工具、平台能力。"
+        },
+        "target_users": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "目标用户或使用对象。"
+        },
+        "problem_statement": {
+          "type": "string",
+          "description": "岗位要解决的核心问题。"
+        },
+        "success_definition": {
+          "type": "string",
+          "description": "这个岗位做成后怎么才算成功。"
+        },
+        "deployment_context": {
+          "type": "string",
+          "description": "上线环境、客户环境或内部环境。"
+        }
+      }
+    },
+    "responsibilities": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string" },
+      "description": "核心职责。"
+    },
+    "must_have": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skills", "experience", "evidence"],
+      "properties": {
+        "skills": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "必须技能。"
+        },
+        "experience": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "必须经历或项目背景。"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "用于证明必须项的材料或信号。"
+        },
+        "deliverables": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "必须交付物。"
+        },
+        "verification_signals": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "能快速验证候选人是否真的做过。"
+        }
+      }
+    },
+    "nice_to_have": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "skills": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "experience": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deliverables": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "tech_stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frontend": { "type": "array", "items": { "type": "string" } },
+        "backend": { "type": "array", "items": { "type": "string" } },
+        "ai": { "type": "array", "items": { "type": "string" } },
+        "data": { "type": "array", "items": { "type": "string" } },
+        "infra": { "type": "array", "items": { "type": "string" } },
+        "deployment": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ai_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_workstreams": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Prompt / RAG / workflow / tool calling / agent / eval / deployment 等。"
+        },
+        "model_usage": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "模型调用方式。"
+        },
+        "data_scope": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "涉及的数据范围。"
+        },
+        "production_expectations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "上线 / 稳定性 / 性能要求。"
+        },
+        "fallback_requirements": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "失败兜底要求。"
+        }
+      }
+    },
+    "evaluation_focus": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "面试或评估重点。"
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "timeline": { "type": "string" },
+        "budget": { "type": "string" },
+        "security": { "type": "string" },
+        "data_access": { "type": "string" },
+        "team_size": { "type": "string" },
+        "on_call": { "type": "string" }
+      }
+    },
+    "out_of_scope": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "明确不做的事情。"
+    },
+    "sourcing_keywords": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "搜索关键词。"
+    },
+    "interview_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "建议追问问题。"
+    },
+    "success_metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "岗位成功标准或指标。"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "origin": { "type": "string" },
+        "owner": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "version": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}
