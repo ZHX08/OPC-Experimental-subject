@@ -91,6 +91,8 @@
     }
     textarea { min-height: 92px; }
     input:focus, textarea:focus, select:focus { border-color: rgba(137,180,255,.7); box-shadow: 0 0 0 3px rgba(137,180,255,.12); }
+    input:invalid, textarea:invalid, select:invalid { border-color: rgba(255,143,143,.75); box-shadow: 0 0 0 3px rgba(255,143,143,.10); }
+    input[aria-invalid="true"], textarea[aria-invalid="true"], select[aria-invalid="true"] { border-color: rgba(255,143,143,.85); }
     .hint { font-size: 12px; color: var(--muted); }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
     button {
@@ -196,31 +198,31 @@
       </aside>
     </header>
 
-    <div class="grid">
+    <form id="pilot-form" class="grid" novalidate>
       <div class="stack">
         <section class="panel">
           <h2>1. 试点输入</h2>
           <p class="desc">把真实流程的输入参数填进来。这个表单直接对应试点前模板里的范围、基线、风险和证据来源。</p>
           <div id="input-form" class="subgrid">
-            <div class="field"><label>pilot_id</label><input name="pilot_id" /></div>
-            <div class="field"><label>pilot_name</label><input name="pilot_name" /></div>
-            <div class="field"><label>direction_id</label><input name="direction_id" /></div>
-            <div class="field"><label>direction_path</label><input name="direction_path" /></div>
-            <div class="field"><label>process_name</label><input name="process_name" /></div>
+            <div class="field"><label>pilot_id</label><input name="pilot_id" required /></div>
+            <div class="field"><label>pilot_name</label><input name="pilot_name" required /></div>
+            <div class="field"><label>direction_id</label><input name="direction_id" required readonly /></div>
+            <div class="field"><label>direction_path</label><input name="direction_path" required readonly /></div>
+            <div class="field"><label>process_name</label><input name="process_name" required /></div>
             <div class="field"><label>business_department</label><input name="business_department" /></div>
-            <div class="field"><label>business_owner</label><input name="business_owner" /></div>
+            <div class="field"><label>business_owner</label><input name="business_owner" required /></div>
             <div class="field"><label>technical_owner</label><input name="technical_owner" /></div>
             <div class="field"><label>requester</label><input name="requester" /></div>
-            <div class="field"><label>system_of_record</label><input name="system_of_record" /></div>
+            <div class="field"><label>system_of_record</label><input name="system_of_record" required /></div>
             <div class="field"><label>secondary_systems</label><input name="secondary_systems" /></div>
             <div class="field"><label>intake_channel</label><input name="intake_channel" /></div>
-            <div class="field full"><label>request_summary</label><textarea name="request_summary"></textarea></div>
-            <div class="field full"><label>policy_anchor</label><textarea name="policy_anchor"></textarea></div>
+            <div class="field full"><label>request_summary</label><textarea name="request_summary" required></textarea></div>
+            <div class="field full"><label>policy_anchor</label><textarea name="policy_anchor" required></textarea></div>
             <div class="field"><label>target_users</label><input name="target_users" /></div>
             <div class="field"><label>success_standard</label><input name="success_standard" /></div>
-            <div class="field"><label>current_baseline_minutes</label><input name="current_baseline_minutes" type="number" min="0" /></div>
-            <div class="field"><label>target_minutes</label><input name="target_minutes" type="number" min="0" /></div>
-            <div class="field"><label>expected_volume_per_week</label><input name="expected_volume_per_week" type="number" min="0" /></div>
+            <div class="field"><label>current_baseline_minutes</label><input name="current_baseline_minutes" type="number" min="0" required /></div>
+            <div class="field"><label>target_minutes</label><input name="target_minutes" type="number" min="0" required /></div>
+            <div class="field"><label>expected_volume_per_week</label><input name="expected_volume_per_week" type="number" min="0" required /></div>
             <div class="field"><label>baseline_error_rate</label><input name="baseline_error_rate" type="number" step="0.01" min="0" max="1" /></div>
             <div class="field"><label>baseline_rework_rate</label><input name="baseline_rework_rate" type="number" step="0.01" min="0" max="1" /></div>
             <div class="field"><label>baseline_human_touches</label><input name="baseline_human_touches" type="number" min="0" /></div>
@@ -238,13 +240,13 @@
                 <option>high</option>
               </select>
             </div>
-            <div class="field"><label>human_gate</label><input name="human_gate" /></div>
-            <div class="field"><label>fallback_owner</label><input name="fallback_owner" /></div>
+            <div class="field"><label>human_gate</label><input name="human_gate" required /></div>
+            <div class="field"><label>fallback_owner</label><input name="fallback_owner" required /></div>
             <div class="field"><label>fallback_plan</label><input name="fallback_plan" /></div>
-            <div class="field"><label>writeback_target</label><input name="writeback_target" /></div>
-            <div class="field"><label>audit_path</label><input name="audit_path" /></div>
+            <div class="field"><label>writeback_target</label><input name="writeback_target" required /></div>
+            <div class="field"><label>audit_path</label><input name="audit_path" required /></div>
             <div class="field"><label>trial_mode</label>
-              <select name="trial_mode">
+              <select name="trial_mode" required>
                 <option selected>shadow_mode</option>
                 <option>small_pilot</option>
                 <option>controlled_launch</option>
@@ -256,6 +258,7 @@
             <button id="evaluate" type="button">运行试点评估</button>
             <button id="save" class="good" type="button">保存试点证据</button>
           </div>
+          <div id="validation-summary" class="footer-note"></div>
         </section>
 
         <section class="panel">
@@ -358,15 +361,26 @@
         </section>
 
         <section class="panel">
+          <h2>6. Markdown 回写包</h2>
+          <p class="desc">导出后的 Markdown 既能直接复制，也能作为 `scripts/direction_priority_db.py` 的导入源。</p>
+          <div class="actions">
+            <button id="export-markdown" class="secondary" type="button">导出 Markdown</button>
+            <button id="copy-markdown" class="secondary" type="button">一键复制 Markdown</button>
+          </div>
+          <div id="markdown-status" class="footer-note">先运行评估，再导出回写包。</div>
+          <pre id="markdown-preview">等待导出…</pre>
+        </section>
+
+        <section class="panel">
           <h2>最近保存的回写包</h2>
           <div class="history" id="history"></div>
         </section>
       </div>
-    </div>
+    </form>
   </div>
 
   <script>
-    const form = document.querySelector('form') || document;
+    const form = document.getElementById('pilot-form');
     const metricsEl = document.getElementById('metrics');
     const resultCallout = document.getElementById('result-callout');
     const evaluationJson = document.getElementById('evaluation-json');
@@ -376,10 +390,220 @@
     const riskPill = document.getElementById('risk-pill');
     const modePill = document.getElementById('mode-pill');
     const historyEl = document.getElementById('history');
+    const validationSummary = document.getElementById('validation-summary');
+    const markdownPreview = document.getElementById('markdown-preview');
+    const markdownStatus = document.getElementById('markdown-status');
     let latestEvaluation = null;
+    let latestMarkdown = '';
+    const coreRequiredFields = ['pilot_id', 'pilot_name', 'direction_id', 'direction_path', 'process_name', 'business_owner', 'system_of_record', 'request_summary', 'policy_anchor', 'current_baseline_minutes', 'target_minutes', 'expected_volume_per_week', 'human_gate', 'fallback_owner', 'writeback_target', 'audit_path', 'trial_mode'];
+    const saveRequiredFields = [...coreRequiredFields, 'human_confirmation_status', 'final_decision', 'case_id', 'collector', 'success_failure', 'reuse_score', 'roi_signal', 'should_deepen', 'accepted', 'score', 'human_edits', 'evidence_baseline', 'evidence_artifacts'];
+    const fieldLabels = {
+      pilot_id: '试点编号',
+      pilot_name: '试点名称',
+      direction_id: '方向 ID',
+      direction_path: '方向路径',
+      process_name: '流程名称',
+      business_owner: '业务 owner',
+      system_of_record: 'system of record',
+      request_summary: '请求摘要',
+      policy_anchor: '政策锚点',
+      current_baseline_minutes: '当前基线时长',
+      target_minutes: '目标时长',
+      expected_volume_per_week: '每周量级',
+      human_gate: '人工确认点',
+      fallback_owner: 'fallback owner',
+      writeback_target: '写回目标',
+      audit_path: '审计路径',
+      trial_mode: '试点模式',
+      case_id: 'case_id',
+      collector: 'collector',
+      success_failure: 'success_failure',
+      reuse_score: 'reuse_score',
+      roi_signal: 'roi_signal',
+      should_deepen: 'should_deepen',
+      accepted: 'accepted',
+      score: 'score',
+      human_edits: 'human_edits',
+      evidence_baseline: 'evidence_baseline',
+      evidence_artifacts: 'evidence_artifacts',
+      human_confirmation_status: 'human_confirmation_status',
+      final_decision: 'final_decision',
+    };
 
     function byName(name) {
       return document.querySelector(`[name="${name}"]`);
+    }
+
+    function formatFieldName(name) {
+      return fieldLabels[name] || name;
+    }
+
+    function clearValidationState() {
+      document.querySelectorAll('[name]').forEach((el) => {
+        if (typeof el.setCustomValidity === 'function') {
+          el.setCustomValidity('');
+        }
+        el.removeAttribute('aria-invalid');
+      });
+    }
+
+    function setFieldError(name, message) {
+      const el = byName(name);
+      if (!el) return;
+      if (typeof el.setCustomValidity === 'function') {
+        el.setCustomValidity(message);
+      }
+      el.setAttribute('aria-invalid', 'true');
+    }
+
+    function renderValidationSummary(validation, fallbackTitle = '校验通过，可以继续运行。') {
+      const errors = validation?.errors || {};
+      const warnings = validation?.warnings || [];
+      const errorItems = Object.entries(errors).map(([key, value]) => `${formatFieldName(key)}：${value}`);
+      const parts = [];
+      if (!validation) {
+        parts.push(fallbackTitle);
+      } else if (errorItems.length) {
+        parts.push(`校验未通过：${errorItems.join('；')}`);
+      } else {
+        parts.push(fallbackTitle);
+      }
+      if (warnings.length) {
+        parts.push(`提醒：${warnings.join('；')}`);
+      }
+      validationSummary.textContent = parts.join(' ');
+    }
+
+    function validateAction(action) {
+      clearValidationState();
+      const payload = serialize();
+      const requiredFields = action === 'save' ? saveRequiredFields : coreRequiredFields;
+      const errors = {};
+      const warnings = [];
+
+      for (const name of requiredFields) {
+        const el = byName(name);
+        if (!el) continue;
+        const value = el.type === 'checkbox' ? el.checked : String(el.value || '').trim();
+        if (!value && value !== false) {
+          errors[name] = '必填字段不能为空';
+          setFieldError(name, `${formatFieldName(name)} 不能为空`);
+        }
+      }
+
+      const baseline = Number(payload.current_baseline_minutes);
+      const target = Number(payload.target_minutes);
+      const weekly = Number(payload.expected_volume_per_week);
+      if (Number.isFinite(baseline) && baseline < 0) {
+        errors.current_baseline_minutes = '请填写非负整数';
+        setFieldError('current_baseline_minutes', '请填写非负整数');
+      }
+      if (Number.isFinite(target) && target < 0) {
+        errors.target_minutes = '请填写非负整数';
+        setFieldError('target_minutes', '请填写非负整数');
+      }
+      if (Number.isFinite(weekly) && weekly < 0) {
+        errors.expected_volume_per_week = '请填写非负整数';
+        setFieldError('expected_volume_per_week', '请填写非负整数');
+      }
+      if (Number.isFinite(baseline) && Number.isFinite(target) && target > baseline) {
+        const msg = '目标时长不应高于当前基线';
+        if (action === 'save') {
+          errors.target_minutes = msg;
+          setFieldError('target_minutes', msg);
+        } else {
+          warnings.push(msg);
+        }
+      }
+
+      for (const name of ['baseline_error_rate', 'baseline_rework_rate']) {
+        const raw = String(payload[name] || '').trim();
+        if (!raw) continue;
+        const value = Number(raw);
+        if (!Number.isFinite(value) || value < 0 || value > 1) {
+          errors[name] = '请填写 0 到 1 之间的小数';
+          setFieldError(name, '请填写 0 到 1 之间的小数');
+        }
+      }
+
+      const reuse = String(payload.reuse_score || '').trim();
+      if (action === 'save' || reuse) {
+        const value = Number(reuse);
+        if (!Number.isFinite(value) || value < 0 || value > 1) {
+          errors.reuse_score = 'reuse_score 需要在 0 到 1 之间';
+          setFieldError('reuse_score', 'reuse_score 需要在 0 到 1 之间');
+        }
+      }
+
+      if (action === 'save') {
+        const score = Number(payload.score);
+        if (!Number.isFinite(score) || score < 0 || score > 10) {
+          errors.score = 'score 需要在 0 到 10 之间';
+          setFieldError('score', 'score 需要在 0 到 10 之间');
+        }
+      }
+
+      const ok = form.checkValidity();
+      renderValidationSummary({ ok, errors, warnings });
+      if (!ok) {
+        form.reportValidity();
+      }
+      return ok;
+    }
+
+    function downloadMarkdown(markdown, filename) {
+      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'internal-process-pilot.md';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function refreshMarkdownPreview(payload = serialize(), evaluation = latestEvaluation) {
+      const res = await fetch('/api/markdown', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, evaluation }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        renderValidationSummary(data.validation || { errors: { markdown: data.error || '导出失败' } }, 'Markdown 暂时无法导出。');
+        latestMarkdown = '';
+        markdownPreview.textContent = '先补齐必填字段，再导出 Markdown。';
+        markdownStatus.textContent = '导出失败';
+        return null;
+      }
+      latestMarkdown = data.markdown || '';
+      markdownPreview.textContent = latestMarkdown || '暂无 Markdown 输出。';
+      markdownStatus.textContent = `已生成 ${data.filename || 'Markdown'}，可复制或下载。`;
+      return data;
+    }
+
+    async function copyMarkdown() {
+      if (!latestMarkdown) {
+        const exported = await refreshMarkdownPreview();
+        if (!exported) return;
+      }
+      await navigator.clipboard.writeText(latestMarkdown);
+      markdownStatus.textContent = 'Markdown 已复制到剪贴板。';
+    }
+
+    async function requestEvaluation(payload) {
+      const res = await fetch('/api/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const evaluation = await res.json();
+      if (!res.ok) {
+        renderValidationSummary(evaluation.validation || { errors: { evaluate: evaluation.error || '评估失败' } }, '评估失败，请检查输入。');
+        return null;
+      }
+      return evaluation;
     }
 
     function setValues(data) {
@@ -408,6 +632,12 @@
       });
       return data;
     }
+
+    form.addEventListener('input', () => {
+      latestEvaluation = null;
+      latestMarkdown = '';
+      markdownStatus.textContent = '表单已修改，需要重新导出 Markdown。';
+    });
 
     function pillClass(value) {
       if (/ready|approved|success/.test(value)) return 'pill ok';
@@ -448,6 +678,7 @@
       riskPill.textContent = `risk: ${evaluation.risk_summary?.risk_level || 'medium'}`;
       modePill.className = pillClass(evaluation.risk_summary?.trial_mode || 'shadow_mode');
       modePill.textContent = `mode: ${evaluation.risk_summary?.trial_mode || 'shadow_mode'}`;
+      renderValidationSummary(evaluation.validation || null, '校验通过，可以继续运行。');
     }
 
     async function loadDefaults() {
@@ -474,39 +705,62 @@
 
     document.getElementById('load-sample').addEventListener('click', async () => {
       await loadDefaults();
+      latestEvaluation = null;
+      latestMarkdown = '';
+      markdownPreview.textContent = '等待导出…';
+      markdownStatus.textContent = '先运行评估，再导出回写包。';
+      renderValidationSummary(null, '样例已填入，可以继续运行。');
       resultCallout.innerHTML = '<strong>样例已填入。</strong><br />可以直接运行试点评估。';
     });
 
     document.getElementById('evaluate').addEventListener('click', async () => {
+      if (!validateAction('evaluate')) return;
       const payload = serialize();
-      const res = await fetch('/api/evaluate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const evaluation = await res.json();
+      const evaluation = await requestEvaluation(payload);
+      if (!evaluation) return;
       renderEvaluation(evaluation);
     });
 
-    document.getElementById('save').addEventListener('click', async () => {
+    document.getElementById('export-markdown').addEventListener('click', async () => {
+      if (!validateAction('save')) return;
       const payload = serialize();
-      if (!latestEvaluation) {
-        const res = await fetch('/api/evaluate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        latestEvaluation = await res.json();
-        renderEvaluation(latestEvaluation);
-      }
+      const evaluation = latestEvaluation || await requestEvaluation(payload);
+      if (!evaluation) return;
+      latestEvaluation = evaluation;
+      renderEvaluation(evaluation);
+      const exported = await refreshMarkdownPreview(payload, evaluation);
+      if (!exported) return;
+      downloadMarkdown(exported.markdown, exported.filename || `internal-process-pilot-${payload.pilot_id || 'export'}.md`);
+    });
+
+    document.getElementById('copy-markdown').addEventListener('click', async () => {
+      if (!validateAction('save')) return;
+      await copyMarkdown();
+    });
+
+    document.getElementById('save').addEventListener('click', async () => {
+      if (!validateAction('save')) return;
+      const payload = serialize();
+      const evaluation = latestEvaluation || await requestEvaluation(payload);
+      if (!evaluation) return;
+      latestEvaluation = evaluation;
       const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...payload, evaluation: latestEvaluation }),
       });
       const saved = await res.json();
+      if (!res.ok) {
+        renderValidationSummary(saved.validation || { errors: { save: saved.error || '保存失败' } }, '保存失败，请补齐字段。');
+        return;
+      }
       const f = saved.files || {};
+      latestEvaluation = saved.run?.evaluation || evaluation;
+      latestMarkdown = saved.markdown || '';
+      markdownPreview.textContent = latestMarkdown || '暂无 Markdown 输出。';
+      markdownStatus.textContent = latestMarkdown ? 'Markdown 已随保存生成。' : '保存成功。';
       resultCallout.innerHTML = `<strong>已保存。</strong><br />runtime: ${f.runtime_json || ''}<br />feedback: ${f.feedback_md || ''}`;
+      renderValidationSummary(saved.run?.validation || latestEvaluation.validation || null, '校验通过，可以继续运行。');
       await refreshHistory();
     });
 

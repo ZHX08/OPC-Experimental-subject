@@ -10,6 +10,7 @@
 - 填人工确认
 - 填反馈回写字段
 - 填试点证据记录
+- 导出 Markdown 回写包并一键复制
 - 保存本地回写包，供后续写入知识库 / feedback / SQLite 方向库
 
 ## 默认试点场景
@@ -38,6 +39,7 @@ http://127.0.0.1:8000
 
 - 运行记录：`apps/internal-process-automation-pilot/data/runtime/`
 - 反馈回写包：`feedback/reviews/ai-application-engineer/`
+- Markdown 回写包：保存后同步生成 `.md` 文件，可直接复制给 `scripts/direction_priority_db.py import-feedback`
 - 运行历史：`apps/internal-process-automation-pilot/data/runtime/runs.jsonl`
 
 ## 试点设计对应关系
@@ -57,7 +59,8 @@ http://127.0.0.1:8000
 3. 看缺字段、风险和写回路径
 4. 填人工确认
 5. 填 feedback 回写字段
-6. 点“保存试点证据”
+6. 先导出 Markdown / 一键复制
+7. 点“保存试点证据”
 
 ## 说明
 

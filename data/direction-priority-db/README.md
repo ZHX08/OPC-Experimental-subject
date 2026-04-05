@@ -43,6 +43,7 @@
 - 试点前基线与验收标准 → 帮助确认 `roi_signal` 是否可信
 - 试点中人工介入 / fallback / 审计日志 → 帮助写清 `failure_reason` / `human_edits`
 - 试点后 ROI / 效率 / 错误率 / 扩展判断 → 帮助计算 `reuse_score` 和 `should_deepen`
+- 本地 UI 还能直接导出 Markdown / 一键复制，方便把回写包扔给导入入口
 
 也就是说，这套模板不是单独存档，而是为了让方向优先级数据库更容易判断“值不值得继续加码”。
 
@@ -52,6 +53,7 @@
 python scripts/direction_priority_db.py init
 python scripts/direction_priority_db.py report
 python scripts/direction_priority_db.py feedback
+python scripts/direction_priority_db.py import-feedback feedback/reviews/ai-application-engineer/
 ```
 
 默认会把 SQLite 文件写到：
@@ -64,6 +66,7 @@ python scripts/direction_priority_db.py feedback
 python scripts/direction_priority_db.py init --db /tmp/direction-priority.sqlite3
 python scripts/direction_priority_db.py report --db /tmp/direction-priority.sqlite3
 python scripts/direction_priority_db.py feedback --db /tmp/direction-priority.sqlite3
+python scripts/direction_priority_db.py import-feedback --db /tmp/direction-priority.sqlite3 feedback/reviews/ai-application-engineer/
 ```
 
 ## 你会看到什么

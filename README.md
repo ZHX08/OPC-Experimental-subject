@@ -92,6 +92,7 @@
 - 内部流程自动化真实试点证据模板（试点前 / 中 / 后 / 指标 / 执行清单）
 - 内部流程自动化真实试点设计
 - 可开箱即用的本地试点 UI
+- Markdown 回写包导出 / 一键复制 / 直接导入 SQLite 的桥接
 - 反馈回流与 SQLite 方向优先级数据库的桥接
 
 ---
@@ -113,6 +114,7 @@ http://127.0.0.1:8000
 保存后会写入：
 - `apps/internal-process-automation-pilot/data/runtime/`
 - `feedback/reviews/ai-application-engineer/`
+- 生成可直接复制 / 导入的 Markdown 回写包
 
 ---
 

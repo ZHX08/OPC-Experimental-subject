@@ -39,3 +39,4 @@
 - 复盘沉淀：把 human_edits / reuse_score / roi_signal 写回数据库
 - 客户沟通：看 sell-pack/internal-process-automation/ 里的 sell sheet、case study、pricing pilot
 - 真实试点：看 `pilot-design.md`、`pilot-evidence/` 和本地 UI `apps/internal-process-automation-pilot/`
+- 本地 UI 会导出 Markdown / 一键复制，导出的回写包可直接喂给 `scripts/direction_priority_db.py import-feedback`

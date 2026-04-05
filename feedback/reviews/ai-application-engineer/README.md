@@ -27,6 +27,7 @@
 现在新增的本地 UI 会把回写包写到：
 - `apps/internal-process-automation-pilot/data/runtime/`
 - `feedback/reviews/ai-application-engineer/`
+- Markdown / JSON 回写包可以直接喂给 `scripts/direction_priority_db.py import-feedback`
 
 ## SQLite 映射
 
