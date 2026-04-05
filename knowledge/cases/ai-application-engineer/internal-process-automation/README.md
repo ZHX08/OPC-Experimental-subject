@@ -20,6 +20,7 @@
 - `rule-card.md`：内部流程自动化的硬门槛
 - `failure-modes.md`：常见失败模式
 - `reusable-rules.md`：可复用判断规则
+- `pilot-design.md`：真实试点设计的知识侧摘要
 
 ## 这组内容要保留的重点
 
@@ -37,3 +38,4 @@
 - 销售样板：用成功案例 + 失败对照说明边界
 - 复盘沉淀：把 human_edits / reuse_score / roi_signal 写回数据库
 - 客户沟通：看 sell-pack/internal-process-automation/ 里的 sell sheet、case study、pricing pilot
+- 真实试点：看 `pilot-design.md`、`pilot-evidence/` 和本地 UI `apps/internal-process-automation-pilot/`

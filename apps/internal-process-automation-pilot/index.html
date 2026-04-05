@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>内部流程自动化试点控制台</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a31;
+      --panel-2: #182241;
+      --line: rgba(255,255,255,.09);
+      --text: #e8ecff;
+      --muted: #a9b4da;
+      --accent: #89b4ff;
+      --accent-2: #76e4c5;
+      --warn: #ffd166;
+      --danger: #ff8f8f;
+      --shadow: 0 18px 60px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #17203d 0%, var(--bg) 55%) fixed;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--accent); }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    header {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1.6fr 1fr;
+      align-items: stretch;
+      margin-bottom: 20px;
+    }
+    .hero, .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 22px; }
+    .hero h1 { margin: 0 0 8px; font-size: 30px; }
+    .hero p { margin: 0 0 12px; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(137,180,255,.12);
+      border: 1px solid rgba(137,180,255,.25);
+      color: var(--text);
+      font-size: 13px;
+    }
+    .sidebar { padding: 18px; display: grid; gap: 10px; }
+    .sidebar h3 { margin: 0; font-size: 16px; }
+    .sidebar ol { margin: 0; padding-left: 20px; color: var(--muted); }
+    .sidebar code, code {
+      background: rgba(255,255,255,.08);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .stack { display: grid; gap: 16px; }
+    .panel { padding: 18px; }
+    .panel h2 { margin: 0 0 12px; font-size: 18px; }
+    .panel p.desc { margin: -4px 0 12px; color: var(--muted); font-size: 14px; }
+    .subgrid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .subgrid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13px; color: #cfd8ff; }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(10,15,31,.9);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 11px 12px;
+      outline: none;
+      resize: vertical;
+    }
+    textarea { min-height: 92px; }
+    input:focus, textarea:focus, select:focus { border-color: rgba(137,180,255,.7); box-shadow: 0 0 0 3px rgba(137,180,255,.12); }
+    .hint { font-size: 12px; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight: 700;
+      color: #0b1020;
+      background: var(--accent);
+      cursor: pointer;
+    }
+    button.secondary { background: rgba(255,255,255,.1); color: var(--text); border: 1px solid rgba(255,255,255,.12); }
+    button.good { background: var(--accent-2); }
+    button.warn { background: var(--warn); }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .metric-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .metric {
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+    }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric .value { font-size: 24px; font-weight: 800; margin-top: 2px; }
+    .metric .note { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .callout {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: rgba(137,180,255,.08);
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .callout strong { display: inline-block; margin-bottom: 4px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-right: 6px;
+      background: rgba(255,255,255,.1);
+    }
+    .pill.ok { background: rgba(118,228,197,.15); color: #b7ffe9; }
+    .pill.warn { background: rgba(255,209,102,.14); color: #ffe6a6; }
+    .pill.bad { background: rgba(255,143,143,.14); color: #ffc0c0; }
+    pre {
+      margin: 0;
+      padding: 16px;
+      border-radius: 16px;
+      background: #09101f;
+      border: 1px solid var(--line);
+      overflow: auto;
+      color: #d8defa;
+      min-height: 220px;
+    }
+    .history { display: grid; gap: 10px; }
+    .history-item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+    }
+    .history-item .top { display: flex; justify-content: space-between; gap: 10px; }
+    .history-item .title { font-weight: 700; }
+    .history-item .meta { color: var(--muted); font-size: 12px; }
+    .history-item .desc { color: #d8defa; font-size: 13px; margin-top: 6px; }
+    .footer-note { color: var(--muted); font-size: 12px; margin-top: 10px; }
+    @media (max-width: 1180px) {
+      header, .grid { grid-template-columns: 1fr; }
+      .metric-row, .subgrid.three, .subgrid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <section class="hero">
+        <h1>内部流程自动化试点控制台</h1>
+        <p>
+          这是 <strong>AI 应用工程师 → 内部流程自动化</strong> 的第一版本地 UI。
+          目标很窄：把 <em>试点输入 → 运行结果 → 人工确认 → 反馈回写 → 证据记录</em> 串成一条能直接跑的闭环。
+        </p>
+        <div class="chips">
+          <span class="chip">system of record: OA / ERP</span>
+          <span class="chip">人审点: 高风险字段确认</span>
+          <span class="chip">写回: 反馈回流包 + 证据归档</span>
+          <span class="chip">模式: shadow mode 起步</span>
+        </div>
+        <div class="callout">
+          <strong>默认试点场景：</strong>采购申请预审与分流。<br />
+          先做单流程、单入口、单 SoR、单人审点，避免一开始就做“万能工作流”。
+        </div>
+      </section>
+      <aside class="panel sidebar">
+        <h3>本次试点怎么落地</h3>
+        <ol>
+          <li>填试点输入，尽量贴近真实单据。</li>
+          <li>点 <code>运行试点评估</code>，看缺字段、风险点和写回路径。</li>
+          <li>人工确认后，填回写包与证据。</li>
+          <li>点 <code>保存试点证据</code>，生成本地记录和反馈包。</li>
+        </ol>
+        <div class="hint">保存后会写入 <code>apps/internal-process-automation-pilot/data/runtime/</code>，并同步生成 <code>feedback/reviews/ai-application-engineer/</code> 下的回写包。</div>
+      </aside>
+    </header>
+
+    <div class="grid">
+      <div class="stack">
+        <section class="panel">
+          <h2>1. 试点输入</h2>
+          <p class="desc">把真实流程的输入参数填进来。这个表单直接对应试点前模板里的范围、基线、风险和证据来源。</p>
+          <div id="input-form" class="subgrid">
+            <div class="field"><label>pilot_id</label><input name="pilot_id" /></div>
+            <div class="field"><label>pilot_name</label><input name="pilot_name" /></div>
+            <div class="field"><label>direction_id</label><input name="direction_id" /></div>
+            <div class="field"><label>direction_path</label><input name="direction_path" /></div>
+            <div class="field"><label>process_name</label><input name="process_name" /></div>
+            <div class="field"><label>business_department</label><input name="business_department" /></div>
+            <div class="field"><label>business_owner</label><input name="business_owner" /></div>
+            <div class="field"><label>technical_owner</label><input name="technical_owner" /></div>
+            <div class="field"><label>requester</label><input name="requester" /></div>
+            <div class="field"><label>system_of_record</label><input name="system_of_record" /></div>
+            <div class="field"><label>secondary_systems</label><input name="secondary_systems" /></div>
+            <div class="field"><label>intake_channel</label><input name="intake_channel" /></div>
+            <div class="field full"><label>request_summary</label><textarea name="request_summary"></textarea></div>
+            <div class="field full"><label>policy_anchor</label><textarea name="policy_anchor"></textarea></div>
+            <div class="field"><label>target_users</label><input name="target_users" /></div>
+            <div class="field"><label>success_standard</label><input name="success_standard" /></div>
+            <div class="field"><label>current_baseline_minutes</label><input name="current_baseline_minutes" type="number" min="0" /></div>
+            <div class="field"><label>target_minutes</label><input name="target_minutes" type="number" min="0" /></div>
+            <div class="field"><label>expected_volume_per_week</label><input name="expected_volume_per_week" type="number" min="0" /></div>
+            <div class="field"><label>baseline_error_rate</label><input name="baseline_error_rate" type="number" step="0.01" min="0" max="1" /></div>
+            <div class="field"><label>baseline_rework_rate</label><input name="baseline_rework_rate" type="number" step="0.01" min="0" max="1" /></div>
+            <div class="field"><label>baseline_human_touches</label><input name="baseline_human_touches" type="number" min="0" /></div>
+            <div class="field"><label>data_sensitivity</label>
+              <select name="data_sensitivity">
+                <option>low</option>
+                <option selected>medium</option>
+                <option>high</option>
+              </select>
+            </div>
+            <div class="field"><label>risk_level</label>
+              <select name="risk_level">
+                <option>low</option>
+                <option selected>medium</option>
+                <option>high</option>
+              </select>
+            </div>
+            <div class="field"><label>human_gate</label><input name="human_gate" /></div>
+            <div class="field"><label>fallback_owner</label><input name="fallback_owner" /></div>
+            <div class="field"><label>fallback_plan</label><input name="fallback_plan" /></div>
+            <div class="field"><label>writeback_target</label><input name="writeback_target" /></div>
+            <div class="field"><label>audit_path</label><input name="audit_path" /></div>
+            <div class="field"><label>trial_mode</label>
+              <select name="trial_mode">
+                <option selected>shadow_mode</option>
+                <option>small_pilot</option>
+                <option>controlled_launch</option>
+              </select>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="load-sample" class="secondary" type="button">填入样例</button>
+            <button id="evaluate" type="button">运行试点评估</button>
+            <button id="save" class="good" type="button">保存试点证据</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>2. 运行结果展示</h2>
+          <p class="desc">这里显示评估结果、缺口、风险和建议的人工确认点。</p>
+          <div class="metric-row" id="metrics"></div>
+          <div class="callout" id="result-callout">
+            <strong>等待运行。</strong><br />先填输入，再点 <code>运行试点评估</code>。
+          </div>
+          <div style="margin-top:12px;">
+            <span id="verdict-pill" class="pill">verdict: pending</span>
+            <span id="risk-pill" class="pill">risk: medium</span>
+            <span id="mode-pill" class="pill">mode: shadow_mode</span>
+          </div>
+          <div style="margin-top:12px; display:grid; gap:12px; grid-template-columns: 1fr 1fr;">
+            <div>
+              <h3 style="margin:0 0 8px; font-size:15px;">人工确认点</h3>
+              <ul id="review-points" style="margin:0; color: var(--text); padding-left: 20px;"></ul>
+            </div>
+            <div>
+              <h3 style="margin:0 0 8px; font-size:15px;">回写路径</h3>
+              <ul id="writeback-path" style="margin:0; color: var(--text); padding-left: 20px;"></ul>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <h3 style="margin:0 0 8px; font-size:15px;">详细结果 JSON</h3>
+            <pre id="evaluation-json">{}</pre>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel">
+          <h2>3. 人工确认</h2>
+          <p class="desc">这里是人审点。不要让 AI 跳过人工确认。</p>
+          <div class="subgrid three">
+            <div class="field full"><label>human_confirmation_status</label>
+              <select name="human_confirmation_status">
+                <option value="pending">pending</option>
+                <option value="approved">approved</option>
+                <option value="needs_revision">needs_revision</option>
+                <option value="rejected">rejected</option>
+              </select>
+            </div>
+            <div class="field full"><label>human_confirmation_notes</label><textarea name="human_confirmation_notes"></textarea></div>
+            <div class="field full"><label>final_decision</label>
+              <select name="final_decision">
+                <option value="needs_more_info">needs_more_info</option>
+                <option value="ready_for_pilot">ready_for_pilot</option>
+                <option value="shadow_mode_only">shadow_mode_only</option>
+                <option value="stop">stop</option>
+              </select>
+            </div>
+            <div class="field full"><label>final_decision_reason</label><textarea name="final_decision_reason"></textarea></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>4. 反馈回写</h2>
+          <p class="desc">这里写的是可回流到 direction DB 和 feedback review 的结构化字段。</p>
+          <div class="subgrid">
+            <div class="field"><label>case_id</label><input name="case_id" /></div>
+            <div class="field"><label>collector</label><input name="collector" /></div>
+            <div class="field"><label>success_failure</label>
+              <select name="success_failure">
+                <option>success</option>
+                <option selected>mixed</option>
+                <option>failure</option>
+              </select>
+            </div>
+            <div class="field"><label>reuse_score</label><input name="reuse_score" type="number" min="0" max="1" step="0.01" /></div>
+            <div class="field"><label>roi_signal</label><input name="roi_signal" /></div>
+            <div class="field"><label>should_deepen</label>
+              <select name="should_deepen">
+                <option value="true" selected>true</option>
+                <option value="false">false</option>
+              </select>
+            </div>
+            <div class="field"><label>accepted</label>
+              <select name="accepted">
+                <option value="true">true</option>
+                <option value="false" selected>false</option>
+              </select>
+            </div>
+            <div class="field"><label>score</label><input name="score" type="number" min="0" max="10" step="0.1" /></div>
+            <div class="field full"><label>failure_reason</label><textarea name="failure_reason"></textarea></div>
+            <div class="field full"><label>human_edits</label><textarea name="human_edits"></textarea></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>5. 试点证据记录入口</h2>
+          <p class="desc">把试点前 / 中 / 后模板里的证据浓缩到这里，保存后就能形成可追溯包。</p>
+          <div class="subgrid">
+            <div class="field full"><label>evidence_baseline</label><textarea name="evidence_baseline"></textarea></div>
+            <div class="field full"><label>evidence_artifacts</label><textarea name="evidence_artifacts"></textarea></div>
+            <div class="field full"><label>run_notes</label><textarea name="run_notes"></textarea></div>
+          </div>
+          <div class="footer-note">建议至少填：基线、人工修改痕迹、最终回写结果、审计路径、异常或 fallback 说明。</div>
+        </section>
+
+        <section class="panel">
+          <h2>最近保存的回写包</h2>
+          <div class="history" id="history"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.querySelector('form') || document;
+    const metricsEl = document.getElementById('metrics');
+    const resultCallout = document.getElementById('result-callout');
+    const evaluationJson = document.getElementById('evaluation-json');
+    const reviewPoints = document.getElementById('review-points');
+    const writebackPath = document.getElementById('writeback-path');
+    const verdictPill = document.getElementById('verdict-pill');
+    const riskPill = document.getElementById('risk-pill');
+    const modePill = document.getElementById('mode-pill');
+    const historyEl = document.getElementById('history');
+    let latestEvaluation = null;
+
+    function byName(name) {
+      return document.querySelector(`[name="${name}"]`);
+    }
+
+    function setValues(data) {
+      Object.entries(data).forEach(([key, value]) => {
+        const el = byName(key);
+        if (!el || value === undefined || value === null) return;
+        if (el.tagName === 'SELECT') {
+          el.value = String(value);
+        } else if (el.type === 'checkbox') {
+          el.checked = Boolean(value);
+        } else {
+          el.value = String(value);
+        }
+      });
+    }
+
+    function serialize() {
+      const data = {};
+      document.querySelectorAll('[name]').forEach((el) => {
+        if (!el.name) return;
+        if (el.type === 'checkbox') {
+          data[el.name] = el.checked;
+        } else {
+          data[el.name] = el.value;
+        }
+      });
+      return data;
+    }
+
+    function pillClass(value) {
+      if (/ready|approved|success/.test(value)) return 'pill ok';
+      if (/shadow|needs|mixed/.test(value)) return 'pill warn';
+      if (/stop|reject|failure/.test(value)) return 'pill bad';
+      return 'pill';
+    }
+
+    function renderEvaluation(evaluation) {
+      latestEvaluation = evaluation;
+      const m = evaluation.metrics || {};
+      metricsEl.innerHTML = '';
+      const cards = [
+        ['完整度', `${Math.round((evaluation.completeness || 0) * 100)}%`, '必填字段与试点边界是否齐了'],
+        ['结论', evaluation.verdict, evaluation.pilot_recommendation],
+        ['置信度', `${Math.round((evaluation.confidence || 0) * 100)}%`, '这是流程可试点的判断信号，不是最终上线信号'],
+        ['周节省时长', `${m.estimated_weekly_time_saved || 0} 分钟`, '用来判断这条线是否值得继续做'],
+      ];
+      for (const [label, value, note] of cards) {
+        const div = document.createElement('div');
+        div.className = 'metric';
+        div.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div><div class="note">${note}</div>`;
+        metricsEl.appendChild(div);
+      }
+
+      const text = [
+        evaluation.pilot_recommendation,
+        evaluation.blockers.length ? `阻塞项：${evaluation.blockers.join('；')}` : '无阻塞项。',
+        evaluation.missing_fields.length ? `缺失字段：${evaluation.missing_fields.join('、')}` : '无缺失字段。',
+      ].join('\n');
+      resultCallout.innerHTML = `<strong>${evaluation.verdict}</strong><br />${text.replace(/\n/g, '<br />')}`;
+      evaluationJson.textContent = JSON.stringify(evaluation, null, 2);
+      reviewPoints.innerHTML = evaluation.human_review_points.map((item) => `<li>${item}</li>`).join('');
+      writebackPath.innerHTML = evaluation.writeback_path.map((item) => `<li>${item}</li>`).join('');
+      verdictPill.className = pillClass(evaluation.verdict);
+      verdictPill.textContent = `verdict: ${evaluation.verdict}`;
+      riskPill.className = pillClass(evaluation.risk_summary?.risk_level || 'medium');
+      riskPill.textContent = `risk: ${evaluation.risk_summary?.risk_level || 'medium'}`;
+      modePill.className = pillClass(evaluation.risk_summary?.trial_mode || 'shadow_mode');
+      modePill.textContent = `mode: ${evaluation.risk_summary?.trial_mode || 'shadow_mode'}`;
+    }
+
+    async function loadDefaults() {
+      const res = await fetch('/api/defaults');
+      setValues(await res.json());
+    }
+
+    async function refreshHistory() {
+      const res = await fetch('/api/history');
+      const data = await res.json();
+      const items = data.items || [];
+      if (!items.length) {
+        historyEl.innerHTML = '<div class="history-item"><div class="title">还没有保存记录</div><div class="meta">先运行评估，再点“保存试点证据”。</div></div>';
+        return;
+      }
+      historyEl.innerHTML = items.map((item) => {
+        const verdict = item.evaluation?.verdict || 'unknown';
+        const decision = item.feedback?.final_decision || 'n/a';
+        const title = `${item.payload?.pilot_name || '未命名试点'} · ${item.id}`;
+        const desc = `${item.payload?.process_name || ''} / ${item.payload?.system_of_record || ''}`;
+        return `<div class="history-item"><div class="top"><div class="title">${title}</div><div class="meta">${item.created_at}</div></div><div class="desc">${desc}<br/>评估：${verdict} · 人工确认：${item.human_confirmation?.status || 'pending'} · 最终：${decision}</div></div>`;
+      }).join('');
+    }
+
+    document.getElementById('load-sample').addEventListener('click', async () => {
+      await loadDefaults();
+      resultCallout.innerHTML = '<strong>样例已填入。</strong><br />可以直接运行试点评估。';
+    });
+
+    document.getElementById('evaluate').addEventListener('click', async () => {
+      const payload = serialize();
+      const res = await fetch('/api/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const evaluation = await res.json();
+      renderEvaluation(evaluation);
+    });
+
+    document.getElementById('save').addEventListener('click', async () => {
+      const payload = serialize();
+      if (!latestEvaluation) {
+        const res = await fetch('/api/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        latestEvaluation = await res.json();
+        renderEvaluation(latestEvaluation);
+      }
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, evaluation: latestEvaluation }),
+      });
+      const saved = await res.json();
+      const f = saved.files || {};
+      resultCallout.innerHTML = `<strong>已保存。</strong><br />runtime: ${f.runtime_json || ''}<br />feedback: ${f.feedback_md || ''}`;
+      await refreshHistory();
+    });
+
+    (async function init() {
+      await loadDefaults();
+      const res = await fetch('/api/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(serialize()),
+      });
+      renderEvaluation(await res.json());
+      await refreshHistory();
+    })();
+  </script>
+</body>
+</html>

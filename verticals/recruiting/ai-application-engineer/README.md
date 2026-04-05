@@ -53,5 +53,7 @@
 - 已将 feedback capture / store 显式接入 `workflows/definitions/recruiting-jd-to-shortlist.yaml`
 - 已补 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/` 最小可卖包
 - 已补 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/pilot-evidence/` 真实试点证据模板包
+- 已补 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/real-pilot-design.md` 真实试点设计
+- 已补 `apps/internal-process-automation-pilot/` 第一版本地试点 UI
 - 现在可以直接沿着 `JD → 匹配评估 → 推荐报告 → feedback` 跑最小可用闭环
-- 其中内部流程自动化方向已经补到可直接对外讲的 sell sheet / case study / pricing pilot / 试点证据模板
+- 其中内部流程自动化方向已经补到可直接对外讲的 sell sheet / case study / pricing pilot / 试点证据模板 / 真实试点设计 / 本地 UI

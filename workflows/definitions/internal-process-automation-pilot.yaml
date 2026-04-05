@@ -1,0 +1,100 @@
+name: internal-process-automation-pilot
+scope: AI 应用工程师 / 内部流程自动化
+trigger: 用户提交采购申请预审试点单
+inputs:
+  - pilot_id
+  - pilot_name
+  - process_name
+  - business_owner
+  - system_of_record
+  - request_summary
+  - policy_anchor
+  - current_baseline_minutes
+  - target_minutes
+  - expected_volume_per_week
+  - human_gate
+  - fallback_owner
+  - fallback_plan
+  - writeback_target
+  - audit_path
+  - trial_mode
+  - evidence_baseline
+  - evidence_artifacts
+retrieve:
+  - verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/real-pilot-design.md
+  - verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/pilot-evidence
+  - knowledge/cases/ai-application-engineer/internal-process-automation/pilot-design.md
+  - knowledge/cases/ai-application-engineer/internal-process-automation
+  - feedback/reviews/ai-application-engineer
+steps:
+  - normalize_pilot_scope
+  - identify_system_of_record
+  - check_field_completeness
+  - apply_risk_gate
+  - propose_human_review_points
+  - draft_writeback_plan
+  - capture_human_confirmation
+  - persist_run_record
+  - persist_feedback_bundle
+  - prepare_sqlite_bridge_payload
+outputs:
+  - pilot_evaluation
+  - human_review_notes
+  - feedback_bundle
+  - evidence_bundle
+  - sqlite_bridge_payload
+human_review: true
+feedback_capture: true
+feedback_stage: pilot_run
+hard_gates:
+  scenario:
+    required:
+      - process_name
+      - system_of_record
+      - business_owner
+      - request_summary
+      - policy_anchor
+      - human_gate
+      - fallback_owner
+      - fallback_plan
+      - writeback_target
+    missing_action: ask_for_more_info
+  evidence:
+    required:
+      - evidence_baseline
+      - evidence_artifacts
+    missing_action: persist_partial_and_flag
+  operations:
+    required:
+      - audit_path
+      - trial_mode
+      - fallback_plan
+    missing_action: downgrade_to_shadow_mode
+  metrics:
+    required:
+      - current_baseline_minutes
+      - target_minutes
+      - expected_volume_per_week
+    missing_action: ask_for_more_info
+decision_rules:
+  ready_for_pilot:
+    all_hard_gates: [scenario, evidence, operations, metrics]
+    require:
+      - human_confirmation
+      - shadow_mode
+      - audit_log
+      - fallback_plan
+  shadow_mode_only:
+    allow_missing:
+      - exact_roi
+      - final_writeback_api
+    block_missing:
+      - system_of_record
+      - human_gate
+      - fallback_owner
+  needs_more_info:
+    any_missing:
+      - process_name
+      - request_summary
+      - policy_anchor
+      - audit_path

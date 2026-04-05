@@ -8,6 +8,7 @@
   - `sell-sheet.md`：客户可读的一页售前材料
   - `case-study.md`：客户可读的一页案例材料
   - `pricing-pilot.md`：客户可读的一页报价逻辑 / 试点方案
+  - `real-pilot-design.md`：真实试点流程设计
   - `pilot-evidence/`：真实试点证据模板包
   - `risk-boundary.md`：边界与兜底说明
   - `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：支撑材料
@@ -18,8 +19,10 @@
 - sell sheet
 - case study
 - pricing / pilot proposal
+- 真实试点设计
 - 风险边界
 - 成功 / 失败对照
+- 本地试点 UI：`apps/internal-process-automation-pilot/`
 
 ## 结论
 

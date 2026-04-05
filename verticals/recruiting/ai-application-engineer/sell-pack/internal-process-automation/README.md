@@ -14,14 +14,17 @@
 1. `sell-sheet.md`：一页讲清楚这个方向能卖什么
 2. `case-study.md`：一页讲清楚一个匿名试点样板
 3. `pricing-pilot.md`：一页讲清楚报价逻辑和试点方案
-4. `pilot-evidence/`：试点前 / 中 / 后证据模板、指标口径和执行清单
-5. `risk-boundary.md`：一页讲清楚边界与兜底
-6. `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：作为支撑材料和旧版参考
+4. `real-pilot-design.md`：真实试点流程设计
+5. `pilot-evidence/`：试点前 / 中 / 后证据模板、指标口径和执行清单
+6. `risk-boundary.md`：一页讲清楚边界与兜底
+7. `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：作为支撑材料和旧版参考
+8. `apps/internal-process-automation-pilot/`：第一版本地试点 UI
 
 ## 当前可用结论
 
 - 已经可以直接拿去做客户沟通
 - 已经能讲清楚“问题、方案、边界、价格逻辑、试点路径”
+- 已经补齐真实试点设计和可直接操作的本地 UI
 - 仍然保留可继续补证据的空间，但不影响当前对外说明
 
 ## 目录内容
@@ -29,6 +32,7 @@
 - `sell-sheet.md`：客户可读的一页售前材料
 - `case-study.md`：客户可读的一页案例材料
 - `pricing-pilot.md`：客户可读的一页报价逻辑 / 试点方案
+- `real-pilot-design.md`：真实试点流程设计
 - `pilot-evidence/`：真实试点证据模板包
 - `success-case.md`：成功案例
 - `failure-case.md`：失败对照
@@ -41,9 +45,11 @@
 1. 先用 `sell-sheet.md` 建立信任
 2. 再用 `case-study.md` 证明这条线不是空想
 3. 用 `pricing-pilot.md` 收敛范围、周期和预算
-4. 用 `risk-boundary.md` 说明哪些事必须人工兜底
-5. 需要更详细证据时，再补 `success-case.md` / `failure-case.md` / `roi.md`
+4. 用 `real-pilot-design.md` 说明真实试点怎么跑
+5. 用 `risk-boundary.md` 说明哪些事必须人工兜底
+6. 需要更详细证据时，再补 `success-case.md` / `failure-case.md` / `roi.md`
+7. 想让第一个试用者直接操作，就启动 `apps/internal-process-automation-pilot/`
 
 ## 结论
 
-这套包已经从“样板雏形”升级到**可用于客户沟通并进入真实试点**的程度；现在新增的试点证据模板，可以把前 / 中 / 后的证据、指标和执行过程接住，下一步主要是继续补真实试点数据，而不是再横向扩方向。
+这套包已经从“样板雏形”升级到**可用于客户沟通并进入真实试点**的程度；现在新增的真实试点设计和本地 UI，可以把前 / 中 / 后的证据、指标和执行过程接住，下一步主要是继续补真实试点数据，而不是再横向扩方向。

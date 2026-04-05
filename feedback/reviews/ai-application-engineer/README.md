@@ -24,6 +24,10 @@
 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/pilot-evidence/`
 把前 / 中 / 后证据收齐，再整理成 feedback 样例。
 
+现在新增的本地 UI 会把回写包写到：
+- `apps/internal-process-automation-pilot/data/runtime/`
+- `feedback/reviews/ai-application-engineer/`
+
 ## SQLite 映射
 
 同一组反馈样例已经写入 `data/direction-priority-db/feedback_case_map`，字段包含：

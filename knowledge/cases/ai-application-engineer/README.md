@@ -14,14 +14,16 @@
   - 对应成功 / 失败 case card
   - 对应硬门槛 rule card
   - 对应 failure modes / reusable rules
+  - 对应真实试点设计的知识侧摘要 `pilot-design.md`
   - 这些内容已经和 sell-pack 的客户沟通材料对齐
 
 ## 读法
 
 建议先看：
 1. `internal-process-automation/README.md`
-2. `internal-process-automation/case-card-success.md`
-3. `internal-process-automation/case-card-failure.md`
-4. `internal-process-automation/rule-card.md`
-5. `internal-process-automation/failure-modes.md`
-6. `internal-process-automation/reusable-rules.md`
+2. `internal-process-automation/pilot-design.md`
+3. `internal-process-automation/case-card-success.md`
+4. `internal-process-automation/case-card-failure.md`
+5. `internal-process-automation/rule-card.md`
+6. `internal-process-automation/failure-modes.md`
+7. `internal-process-automation/reusable-rules.md`

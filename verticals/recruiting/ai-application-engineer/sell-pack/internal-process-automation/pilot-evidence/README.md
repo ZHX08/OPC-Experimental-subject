@@ -26,6 +26,7 @@
 3. 试点结束后用 `post-pilot-template.md` 汇总结果
 4. 计算指标时统一走 `metrics-template.md`
 5. 执行前后都对照 `execution-checklist.md` 补齐证据
+6. 如果要让第一个试用者直接操作，可以把证据页和 `apps/internal-process-automation-pilot/` 一起使用
 
 ## 这套模板要留哪些证据
 
