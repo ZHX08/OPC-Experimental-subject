@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "rep-aie-20260405-001",
+  "report_title": "AI 应用工程师候选人推荐报告 - 张澄",
+  "jd_id": "jd-aie-20260405-001",
+  "candidate_id": "cand-zhang-cheng-001",
+  "candidate_name": "张澄",
+  "role_title": "AI 应用工程师",
+  "generated_at": "2026-04-05T11:10:00+08:00",
+  "version": "1.0",
+  "headline": {
+    "decision": "recommend",
+    "summary": "候选人具备 AI 应用工程落地经验，能做 RAG、workflow、评测和反馈闭环；需要继续确认上线规模和复杂部署细节。",
+    "overall_score": 8.2
+  },
+  "scenario_context": {
+    "business_scenario": "企业内部知识工作台，服务销售、客户成功和运营同学的日常问答与资料检索。",
+    "product_stage": "0-1 to 1-10",
+    "target_users": [
+      "销售",
+      "客户成功",
+      "运营"
+    ],
+    "why_this_role": "这个岗位要把知识检索、生成、工具调用和人审闭环做成可稳定使用的系统。",
+    "success_standard": "6 周内交付可上线原型，常见问题可自助解决，反馈可回流，成本与延迟可控。",
+    "constraints": [
+      "内部私有化部署",
+      "文档权限与审计要求",
+      "需要可回滚与可追踪"
+    ]
+  },
+  "match_overview": {
+    "strengths": [
+      "做过企业知识助手，场景高度接近",
+      "清楚描述了 RAG、workflow、日志和反馈回流",
+      "有从 demo 到上线的经验"
+    ],
+    "gaps": [
+      "复杂部署和多系统联动经验没有完全展开",
+      "用户规模与稳定运行的量化数据还需补充"
+    ],
+    "must_have_result": [
+      {
+        "requirement": "真实 AI 应用经验",
+        "status": "met",
+        "evidence": "企业知识助手和销售方案生成助手均为真实项目。"
+      },
+      {
+        "requirement": "能说明上线或准上线状态",
+        "status": "met",
+        "evidence": "企业知识助手已稳定运行 3 个多月。"
+      },
+      {
+        "requirement": "具备工程实现能力",
+        "status": "met",
+        "evidence": "使用 Python、FastAPI、PostgreSQL、Docker 交付。"
+      },
+      {
+        "requirement": "理解 fallback / 日志 / 评测",
+        "status": "met",
+        "evidence": "简历中明确写了日志、人工审核、抽样评测和兜底。"
+      },
+      {
+        "requirement": "能把业务问题拆成流程",
+        "status": "met",
+        "evidence": "从知识检索、答案生成、人工确认到反馈回流都有完整链路。"
+      }
+    ],
+    "nice_to_have_result": [
+      {
+        "requirement": "Dify / n8n / LangGraph / OpenAI SDK / MCP",
+        "status": "partial",
+        "evidence": "简历提到了 workflow 和 LLM 应用，但未展开具体工具。"
+      },
+      {
+        "requirement": "在线评测、A/B、人工复核",
+        "status": "met",
+        "evidence": "明确写了抽样评测和人工复核。"
+      }
+    ],
+    "overall_assessment": "候选人是这条 JD 的可推对象，偏工程落地而非纯概念型选手。"
+  },
+  "engineering_evidence": [
+    {
+      "area": "Prompt",
+      "evidence": "做过结构化输出和模板化生成，能把回答落在固定格式里。",
+      "impact": "降低了输出漂移和人工修改成本。",
+      "proof_type": "项目描述 + 复盘记录",
+      "verification_status": "confirmed",
+      "links": [
+        "resume.sample.md#项目-2销售方案生成助手"
+      ]
+    },
+    {
+      "area": "RAG",
+      "evidence": "在知识助手里接入了文档切分、向量检索和 rerank。",
+      "impact": "提升了答案相关性和可用性。",
+      "proof_type": "项目描述 + 抽样评测",
+      "verification_status": "confirmed",
+      "links": [
+        "resume.sample.md#项目-1企业知识助手"
+      ]
+    },
+    {
+      "area": "workflow",
+      "evidence": "把知识检索、人工确认和回流整理成固定流程。",
+      "impact": "让 demo 变成可持续迭代的业务流程。",
+      "proof_type": "流程图 + 反馈样本",
+      "verification_status": "confirmed",
+      "links": [
+        "resume.sample.md#项目-3工单总结与回流记录"
+      ]
+    },
+    {
+      "area": "eval / feedback",
+      "evidence": "有抽样评测、人工复核和修改记录。",
+      "impact": "可以用反馈反推 prompt 和规则改版。",
+      "proof_type": "评测记录",
+      "verification_status": "confirmed",
+      "links": [
+        "resume.sample.md#核心技能"
+      ]
+    },
+    {
+      "area": "deployment",
+      "evidence": "项目已在内部稳定运行，说明具备上线意识。",
+      "impact": "不是停留在本地 demo。",
+      "proof_type": "上线说明",
+      "verification_status": "needs_follow_up",
+      "links": [
+        "resume.sample.md#项目-1企业知识助手"
+      ]
+    }
+  ],
+  "fit_matrix": [
+    {
+      "dimension": "业务场景匹配",
+      "score": 8.5,
+      "rationale": "企业知识助手和 JD 场景高度一致。"
+    },
+    {
+      "dimension": "工程能力",
+      "score": 8.3,
+      "rationale": "能交付 Python / FastAPI / RAG / workflow 相关能力。"
+    },
+    {
+      "dimension": "评测与反馈",
+      "score": 8.4,
+      "rationale": "有评测、复核和回流意识。"
+    },
+    {
+      "dimension": "上线可用性",
+      "score": 8.0,
+      "rationale": "已经有内部运行案例，但还需要补量化数据。"
+    }
+  ],
+  "risk_analysis": {
+    "risks": [
+      "上线规模和稳定性证据还不够量化",
+      "复杂部署与多系统协作经验需要追问",
+      "当前证据主要集中在内部场景"
+    ],
+    "not_fit_tasks": [
+      "纯研究型模型训练",
+      "大而全 ATS 产品搭建",
+      "脱离业务场景的概念验证"
+    ],
+    "verification_needed": [
+      "真实用户规模",
+      "故障处理和回滚方式",
+      "评测方法与阈值",
+      "模型成本和延迟控制"
+    ],
+    "fallback_and_escapes": [
+      "检索失败时回退到人工建议或固定模板",
+      "高风险内容必须人工确认",
+      "模型异常时切换基础规则输出"
+    ]
+  },
+  "evaluation_plan": {
+    "trial_focus": [
+      "知识检索链路是否稳定",
+      "结构化输出是否可落地",
+      "反馈是否能回写到 prompt / 规则",
+      "人审是否能有效兜底"
+    ],
+    "success_metrics": [
+      "常见问题自助解决率提升",
+      "人工检索耗时下降",
+      "回答延迟和成本可控",
+      "反馈记录可持续积累"
+    ],
+    "feedback_loop": [
+      "保存 AI 初稿",
+      "保存人工修改稿",
+      "保存最终采用稿",
+      "把失败模式回写到规则和提示词"
+    ],
+    "time_box": "首轮 2 周验证，6 周内形成稳定版本",
+    "human_review_points": [
+      "上线证据",
+      "评测方法",
+      "成本边界",
+      "fallback 方案"
+    ]
+  },
+  "recommendation": {
+    "decision": "recommend",
+    "reason": "这位候选人有较完整的 AI 应用工程链路，且能把反馈回流纳入工作方式，符合该岗位的核心要求。",
+    "next_step": "进入客户沟通和面试安排，重点验证上线规模、评测方法和稳定性。",
+    "interviewer_questions": [
+      "你负责的 AI 应用有没有真实用户在用？",
+      "你是怎么做评测和回流的？",
+      "遇到检索失败或模型幻觉时怎么处理？"
+    ]
+  },
+  "follow_up_questions": [
+    "你负责的 AI 应用有没有真实用户在用？",
+    "你是怎么做评测和回流的？",
+    "遇到检索失败或模型幻觉时怎么处理？",
+    "成本、延迟和效果冲突时你怎么取舍？"
+  ],
+  "source_materials": [
+    "jd.sample.json",
+    "resume.sample.md",
+    "match-evaluation.sample.json"
+  ],
+  "notes": "这份报告刻意强调证据链、反馈闭环和 fallback，不把“会用大模型”当成唯一判断标准。"
+}

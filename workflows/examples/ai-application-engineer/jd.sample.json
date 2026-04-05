@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "jd-aie-20260405-001",
+  "role_family": "AI 应用工程师",
+  "role_title": "AI 应用工程师",
+  "aliases": [
+    "LLM 应用工程师",
+    "大模型应用工程师"
+  ],
+  "seniority": "mid-senior",
+  "employment_type": "full-time",
+  "location": "上海",
+  "remote_policy": "混合办公，核心周到岗 2 天",
+  "business_context": {
+    "product_stage": "0-1 to 1-10",
+    "product_type": "企业内部知识工作台",
+    "target_users": [
+      "销售",
+      "客户成功",
+      "运营"
+    ],
+    "problem_statement": "把分散在文档、FAQ、工单和会议纪要里的知识，变成可检索、可引用、可落地的 AI 助手。",
+    "success_definition": "上线 6 周内让一线同事自助解决常见问题，回答可用率稳定，人工兜底流程清晰，成本与延迟可控。",
+    "deployment_context": "内部私有化环境，需兼容公司文档权限与审计要求"
+  },
+  "responsibilities": [
+    "负责 AI 应用的需求拆解、技术方案设计与落地实现",
+    "实现 Prompt、上下文管理、工具调用、知识库检索与工作流编排",
+    "建立评测、日志、反馈回流和迭代优化机制",
+    "与业务方协作，把 demo 变成可稳定使用的上线版本",
+    "控制效果、成本、延迟和异常兜底"
+  ],
+  "must_have": {
+    "skills": [
+      "Python 或 Node.js 工程能力",
+      "Prompt / RAG / workflow / tool calling 基础",
+      "日志、评测、反馈回流意识",
+      "上线与异常兜底经验"
+    ],
+    "experience": [
+      "至少 1 个 AI 应用从 demo 走到上线或准上线",
+      "做过知识库问答、内容生成或业务流程自动化类项目",
+      "能说明自己负责的模块边界与交付结果"
+    ],
+    "evidence": [
+      "项目截图或 Demo 链接",
+      "评测记录或抽样结果",
+      "上线说明、用户规模或使用日志"
+    ],
+    "deliverables": [
+      "可上线原型",
+      "评测方案",
+      "反馈回流链路"
+    ],
+    "verification_signals": [
+      "能讲清 chunking / rerank / fallback",
+      "能说用户规模、上线状态和指标",
+      "能说明自己实际负责哪一层"
+    ]
+  },
+  "nice_to_have": {
+    "skills": [
+      "Dify / n8n / LangGraph / OpenAI SDK / MCP",
+      "在线评测、A/B、人工复核",
+      "embedding / rerank / chunking 的工程实践"
+    ],
+    "experience": [
+      "企业知识助手、客服、销售或内部流程助手经验",
+      "对成本、延迟、fallback 有明确实践"
+    ],
+    "evidence": [
+      "复盘文档",
+      "知识库版本记录",
+      "反馈样本"
+    ],
+    "deliverables": [
+      "可复用工作流",
+      "可追踪反馈记录"
+    ]
+  },
+  "tech_stack": {
+    "backend": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL"
+    ],
+    "ai": [
+      "OpenAI API",
+      "Claude API",
+      "RAG",
+      "rerank",
+      "embedding"
+    ],
+    "data": [
+      "文档切分",
+      "向量检索",
+      "日志",
+      "反馈样本"
+    ],
+    "infra": [
+      "Docker",
+      "Nginx"
+    ],
+    "deployment": [
+      "内部服务部署",
+      "审计可追踪",
+      "灰度发布"
+    ]
+  },
+  "ai_scope": {
+    "primary_workstreams": [
+      "Prompt",
+      "RAG",
+      "workflow",
+      "tool calling",
+      "eval",
+      "deployment"
+    ],
+    "model_usage": [
+      "单轮问答",
+      "多轮上下文问答",
+      "结构化输出",
+      "人工确认点"
+    ],
+    "data_scope": [
+      "内部文档",
+      "FAQ",
+      "工单摘要",
+      "会议纪要"
+    ],
+    "production_expectations": [
+      "可上线",
+      "可评测",
+      "可回滚",
+      "可审计"
+    ],
+    "fallback_requirements": [
+      "检索失败时返回人工建议",
+      "高风险回答需要人工确认",
+      "模型异常时切换固定模板"
+    ]
+  },
+  "evaluation_focus": [
+    "业务理解与场景拆解",
+    "LLM 应用工程能力",
+    "RAG / Prompt / Workflow 设计",
+    "评测、反馈、稳定性与成本控制",
+    "沟通协作与表达"
+  ],
+  "constraints": {
+    "timeline": "6 周内交付首版上线",
+    "budget": "控制模型成本与人审成本",
+    "security": "内部数据不外发，保留审计记录",
+    "data_access": "只访问获授权文档与工单",
+    "team_size": "1 名工程师 + 业务方协作",
+    "on_call": "工作时间内支持问题定位"
+  },
+  "out_of_scope": [
+    "大而全 ATS",
+    "多行业全覆盖",
+    "复杂权限系统",
+    "纯研究型模型训练"
+  ],
+  "sourcing_keywords": [
+    "AI 应用工程师",
+    "LLM 应用工程师",
+    "大模型应用",
+    "RAG",
+    "工作流编排",
+    "反馈回流"
+  ],
+  "interview_questions": [
+    "你做过的 AI 应用有没有上线？多少用户在用？",
+    "你怎么做评测，怎么判断结果可用？",
+    "你怎么处理检索失败、模型幻觉和工具调用失败？",
+    "你如何平衡效果、成本和响应速度？"
+  ],
+  "success_metrics": [
+    "常见问题自助解决率提升",
+    "人工检索耗时下降",
+    "回答延迟和成本在可接受范围内",
+    "反馈闭环可持续迭代"
+  ],
+  "source": {
+    "origin": "OPC-Experimental-subject / recruiting vertical",
+    "owner": "recruiting-kb",
+    "notes": "用于 AI 应用工程师最小闭环样例"
+  },
+  "version": "1.0",
+  "created_at": "2026-04-05T09:00:00+08:00",
+  "updated_at": "2026-04-05T09:00:00+08:00"
+}

@@ -16,8 +16,15 @@ steps:
   - identify_risks
   - draft_recommendation_report
   - human_review
+  - capture_human_feedback
+  - persist_feedback_record
 outputs:
   - jd_summary
   - fit_assessment
   - recommendation_report
+  - feedback_record
 human_review: true
+feedback_capture: true
+feedback_stage: recommendation_report
+feedback_store:
+  - feedback/reviews/ai-application-engineer/feedback-loop-sample.md

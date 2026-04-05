@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "me-aie-20260405-001",
+  "jd_id": "jd-aie-20260405-001",
+  "candidate_id": "cand-zhang-cheng-001",
+  "candidate_snapshot": {
+    "name": "张澄",
+    "current_title": "LLM 应用工程师",
+    "current_company": "星图知识科技",
+    "years_experience": 4.5,
+    "location": "杭州",
+    "target_role": "AI 应用工程师"
+  },
+  "match_summary": "可推：候选人具备 AI 应用落地经验，能做 RAG、workflow、评测和反馈闭环，但还需要继续确认更复杂部署与跨团队协作边界。",
+  "recommendation": "recommend",
+  "overall_score": 8.2,
+  "dimension_scores": [
+    {
+      "dimension": "domain",
+      "score": 8.0,
+      "weight": 0.2,
+      "reason": "理解企业知识、销售和工单类场景，和岗位目标一致。",
+      "evidence_refs": [
+        "resume.sample.md#项目-1企业知识助手",
+        "resume.sample.md#项目-2销售方案生成助手"
+      ]
+    },
+    {
+      "dimension": "ai_engineering",
+      "score": 8.5,
+      "weight": 0.25,
+      "reason": "能清楚说明 Prompt、RAG、workflow、tool calling 和结构化输出。",
+      "evidence_refs": [
+        "resume.sample.md#核心技能",
+        "resume.sample.md#项目-1企业知识助手"
+      ]
+    },
+    {
+      "dimension": "product_delivery",
+      "score": 8.0,
+      "weight": 0.2,
+      "reason": "有从 demo 推到上线的经历，也懂如何控制交付边界。",
+      "evidence_refs": [
+        "resume.sample.md#项目-1企业知识助手",
+        "resume.sample.md#关键经历"
+      ]
+    },
+    {
+      "dimension": "eval_feedback",
+      "score": 8.4,
+      "weight": 0.2,
+      "reason": "有抽样评测、人工复核和反馈回流意识，符合岗位要求。",
+      "evidence_refs": [
+        "resume.sample.md#核心技能",
+        "resume.sample.md#项目-3工单总结与回流记录"
+      ]
+    },
+    {
+      "dimension": "communication",
+      "score": 7.8,
+      "weight": 0.15,
+      "reason": "能讲清楚负责边界和结果，但复杂项目的协作细节还需要追问。",
+      "evidence_refs": [
+        "resume.sample.md#关键经历",
+        "resume.sample.md#可被追问的点"
+      ]
+    }
+  ],
+  "must_have_checks": [
+    {
+      "requirement": "真实 AI 应用经验",
+      "status": "met",
+      "evidence": "做过企业知识助手、销售方案生成助手和工单回流记录。",
+      "risk": "目前以内部业务场景为主，未见强公网产品经验。",
+      "blocking": false
+    },
+    {
+      "requirement": "能说明上线或准上线状态",
+      "status": "met",
+      "evidence": "企业知识助手已稳定运行 3 个多月，销售方案生成助手为准上线。",
+      "risk": "需要进一步确认真实用户规模和故障处理节奏。",
+      "blocking": false
+    },
+    {
+      "requirement": "具备工程实现能力",
+      "status": "met",
+      "evidence": "使用 Python、FastAPI、PostgreSQL、Docker 完成交付。",
+      "risk": "后续可继续追问部署与监控细节。",
+      "blocking": false
+    },
+    {
+      "requirement": "理解 fallback / 日志 / 评测",
+      "status": "met",
+      "evidence": "简历中明确写了日志、人工审核、抽样评测和兜底。",
+      "risk": "需要确认这些机制是否在生产环境持续运行。",
+      "blocking": false
+    },
+    {
+      "requirement": "能把业务问题拆成流程",
+      "status": "met",
+      "evidence": "从知识检索、答案生成、人工确认到反馈回流都有完整链路。",
+      "risk": "复杂跨部门业务场景下的协同方式还要面试确认。",
+      "blocking": false
+    }
+  ],
+  "strengths": [
+    "有真实上线经验，不只是 demo",
+    "能把 RAG、workflow、评测和反馈回流串起来",
+    "对成本、延迟和兜底有基本工程意识"
+  ],
+  "gaps": [
+    "复杂部署和多系统集成细节还没完全展开",
+    "真实用户规模和稳定运行周期需要继续确认"
+  ],
+  "evidence": [
+    {
+      "dimension": "ai_engineering",
+      "source_type": "resume",
+      "detail": "企业知识助手项目中负责 Prompt、RAG、rerank 和日志回流。",
+      "link": "resume.sample.md#项目-1企业知识助手",
+      "confidence": 0.92
+    },
+    {
+      "dimension": "product_delivery",
+      "source_type": "resume",
+      "detail": "说明了项目已在内部稳定运行 3 个多月。",
+      "link": "resume.sample.md#项目-1企业知识助手",
+      "confidence": 0.9
+    },
+    {
+      "dimension": "eval_feedback",
+      "source_type": "resume",
+      "detail": "写明抽样评测、人工复核和反馈回流。",
+      "link": "resume.sample.md#核心技能",
+      "confidence": 0.88
+    }
+  ],
+  "risk_flags": [
+    "上线规模和稳定性证据仍需面试确认",
+    "跨团队协作与复杂部署经验不够显性",
+    "当前证据更多集中在内部场景"
+  ],
+  "follow_up_questions": [
+    "你负责的 AI 应用有没有上线？多少用户在用？",
+    "你怎么做评测？用什么指标判断结果可用？",
+    "你怎么处理检索失败、模型幻觉和工具调用失败？",
+    "你如何平衡效果、成本和响应速度？"
+  ],
+  "assumptions": [
+    "简历中描述的项目职责与实际职责一致",
+    "内部运行数据和评测记录可以在面试中补充说明"
+  ],
+  "human_review_required": true,
+  "reviewed_by": "recruiting-opc",
+  "review_notes": "人工把推荐语从“技术全面”收紧为“有上线证据、评测意识和反馈闭环”，避免只看技术栈不看证据链。",
+  "evaluated_at": "2026-04-05T10:30:00+08:00",
+  "version": "1.0"
+}

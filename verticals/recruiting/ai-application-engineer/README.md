@@ -44,3 +44,9 @@
 - Prompt / RAG / workflow / tool calling / deployment 证据
 - 评测指标 / 失败场景 / fallback
 - 试用期验证点 / 是否可上线
+
+## 当前补齐情况
+
+- 已补 `workflows/examples/ai-application-engineer/` 端到端样例链路
+- 已将 feedback capture / store 显式接入 `workflows/definitions/recruiting-jd-to-shortlist.yaml`
+- 现在可以直接沿着 `JD → 匹配评估 → 推荐报告 → feedback` 跑最小可用闭环
