@@ -51,3 +51,9 @@
 - 产品经理
 - AI 应用工程师
 - 增长运营
+
+对应种子内容已补到：
+- `knowledge/base/recruiting/roles/`
+- `knowledge/base/recruiting/skills-dictionary.md`
+- `knowledge/base/recruiting/screening-standards.md`
+- `verticals/recruiting/seed-content-plan.md`
