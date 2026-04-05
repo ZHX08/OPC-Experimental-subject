@@ -12,6 +12,13 @@
 4. `recommendation-report.sample.json`：进入推荐阶段的报告
 5. `../../../feedback/reviews/ai-application-engineer/feedback-loop-sample.md`：人工修改 + 最终采用 + 回流记录
 
+## 已补案例
+
+- `case-01`：当前根目录下的原始样例，推荐通过
+- `case-02`：客服 Copilot / 工单总结，推荐通过
+- `case-03`：销售提案生成，失败样例
+- `case-04`：内部流程自动化，推荐通过
+
 ## 这条链路想证明什么
 
 - AI 应用工程师不是“会调模型 API”就够了
@@ -31,3 +38,4 @@
 - 这套样例只用于招聘链路的最小闭环验证
 - 不要把它泛化成多岗位模板
 - 不要把里面的业务场景扩成别的职业方向
+- 新增案例集中放在 `cases/` 目录，便于横向比较

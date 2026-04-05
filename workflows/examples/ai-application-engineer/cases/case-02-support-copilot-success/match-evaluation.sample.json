@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "me-aie-20260405-002",
+  "jd_id": "jd-aie-20260405-002",
+  "candidate_id": "cand-wang-qi-002",
+  "candidate_snapshot": {
+    "name": "王祈",
+    "current_title": "LLM 应用工程师",
+    "current_company": "云岸售后科技",
+    "years_experience": 5.2,
+    "location": "深圳",
+    "target_role": "AI 应用工程师"
+  },
+  "recommendation": "recommend",
+  "overall_score": 8.7,
+  "match_summary": "可推：候选人做过客服 Copilot 和工单摘要，具备上线、评测与回流证据，和岗位目标高度一致。",
+  "must_have_checks": [
+    {
+      "requirement": "真实 AI 应用经验",
+      "status": "met",
+      "evidence": "做过客服 Copilot 和售后知识检索。"
+    },
+    {
+      "requirement": "能说明上线或准上线状态",
+      "status": "met",
+      "evidence": "客服 Copilot 已稳定运行 4 个多月。"
+    },
+    {
+      "requirement": "具备工程实现能力",
+      "status": "met",
+      "evidence": "使用 Python、FastAPI、PostgreSQL、Docker 交付。"
+    },
+    {
+      "requirement": "理解 fallback / 日志 / 评测",
+      "status": "met",
+      "evidence": "简历中写明了升级流转、抽样复核和回滚。"
+    },
+    {
+      "requirement": "能把业务问题拆成流程",
+      "status": "met",
+      "evidence": "从检索、回复建议、摘要到人工升级形成完整链路。"
+    }
+  ],
+  "strengths": [
+    "有真实上线经验",
+    "能把 CRM / 工单 / 知识库串成工作流",
+    "知道如何做兜底与审计"
+  ],
+  "gaps": [
+    "需要进一步追问监控告警细节",
+    "跨部门推行的节奏还可展开"
+  ],
+  "follow_up_questions": [
+    "你怎么给高风险工单设升级阈值？",
+    "线上告警和回滚怎么做？",
+    "评测集怎么更新？"
+  ]
+}

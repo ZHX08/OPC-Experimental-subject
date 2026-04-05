@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "jd-aie-20260405-003",
+  "role_family": "AI 应用工程师",
+  "role_title": "AI 应用工程师（销售提案生成）",
+  "aliases": [
+    "LLM 应用工程师",
+    "销售 AI 工程师"
+  ],
+  "seniority": "mid-senior",
+  "employment_type": "full-time",
+  "location": "上海",
+  "remote_policy": "混合办公",
+  "business_context": {
+    "product_stage": "0-1",
+    "product_type": "销售提案生成助手",
+    "target_users": [
+      "销售",
+      "售前"
+    ],
+    "problem_statement": "销售在复盘客户访谈后，需要快速生成提案草案、产品对比和下一步计划，但当前没有统一的结构化输出。",
+    "success_definition": "首版可以在 6 周内落地，但必须有清晰的工程实现、评测方法和上线边界。",
+    "deployment_context": "内部协作环境，提案内容需要保留审计与审批痕迹。"
+  },
+  "responsibilities": [
+    "负责销售提案助手的需求拆解与落地",
+    "实现 Prompt、结构化输出和工作流编排",
+    "建立评测与人工审核机制",
+    "把 demo 推到可上线版本",
+    "控制事实性错误、成本和交付节奏"
+  ],
+  "must_have": {
+    "skills": [
+      "Python 或 Node.js",
+      "Prompt / workflow / JSON 输出",
+      "日志和评测意识",
+      "上线与兜底经验"
+    ],
+    "experience": [
+      "至少 1 个 AI 应用从 demo 走到上线",
+      "做过工程化项目，而不是只做提示词文案"
+    ],
+    "evidence": [
+      "上线说明",
+      "评测记录",
+      "回流样例"
+    ],
+    "verification_signals": [
+      "能说明自己写过的代码和接口",
+      "能说明如何验证结果可用",
+      "能说明失败时怎么兜底"
+    ]
+  },
+  "nice_to_have": {
+    "skills": [
+      "Dify / n8n / OpenAI SDK"
+    ],
+    "experience": [
+      "销售自动化、方案生成、知识检索"
+    ],
+    "evidence": [
+      "版本记录",
+      "人工修改样例"
+    ]
+  },
+  "evaluation_focus": [
+    "业务理解与场景拆解",
+    "LLM 应用工程能力",
+    "RAG / Prompt / Workflow 设计",
+    "评测、反馈、稳定性与成本控制",
+    "沟通协作与表达"
+  ],
+  "success_metrics": [
+    "提案初稿撰写时间下降 40%",
+    "事实错误率可控",
+    "销售愿意复用",
+    "能形成稳定的人工复核流程"
+  ]
+}

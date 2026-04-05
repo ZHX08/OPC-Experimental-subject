@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "jd-aie-20260405-004",
+  "role_family": "AI 应用工程师",
+  "role_title": "AI 应用工程师（内部流程自动化）",
+  "aliases": [
+    "LLM 应用工程师",
+    "AI 工作流工程师"
+  ],
+  "seniority": "senior",
+  "employment_type": "full-time",
+  "location": "杭州",
+  "remote_policy": "远程优先，必要时到岗",
+  "business_context": {
+    "product_stage": "1-10",
+    "product_type": "内部流程自动化助手",
+    "target_users": [
+      "采购",
+      "法务",
+      "运营",
+      "审批主管"
+    ],
+    "problem_statement": "采购申请、合同摘要和审批流转分散在多个系统里，人工整理耗时且容易漏字段。",
+    "success_definition": "10 周内交付内部流程助手，能自动提取关键信息、串联审批流、保留审计记录，人工处理时间下降 35% 以上。",
+    "deployment_context": "内部私有化部署，需要接 ERP、OA 和审批系统。"
+  },
+  "responsibilities": [
+    "负责内部流程助手的系统设计与实现",
+    "实现结构化抽取、workflow 编排、工具调用和审计日志",
+    "建立上线监控、失败兜底和回滚策略",
+    "把复杂流程拆成稳定可复用的 AI 工具链",
+    "与业务方协作完成试点和推广"
+  ],
+  "must_have": {
+    "skills": [
+      "Python",
+      "FastAPI",
+      "SQL",
+      "workflow / tool calling",
+      "日志与监控"
+    ],
+    "experience": [
+      "至少 1 个内部 AI 系统上线经验",
+      "做过系统集成或流程自动化"
+    ],
+    "evidence": [
+      "上线说明",
+      "用户数或请求量",
+      "监控与回滚记录"
+    ],
+    "verification_signals": [
+      "能讲清接口集成",
+      "能讲清 fallback 和回滚",
+      "能讲清自己负责的模块"
+    ]
+  },
+  "nice_to_have": {
+    "skills": [
+      "LangGraph / MCP / OpenAI SDK",
+      "审批流、ERP、OA 集成"
+    ],
+    "experience": [
+      "采购、法务、运营自动化"
+    ],
+    "evidence": [
+      "评测报告",
+      "流程图",
+      "复盘文档"
+    ]
+  },
+  "evaluation_focus": [
+    "业务理解与场景拆解",
+    "LLM 应用工程能力",
+    "RAG / Prompt / Workflow 设计",
+    "评测、反馈、稳定性与成本控制",
+    "沟通协作与表达"
+  ],
+  "success_metrics": [
+    "人工处理时间下降 35%+",
+    "字段抽取准确率稳定",
+    "可审计、可回滚、可监控",
+    "试点可以平滑推广"
+  ]
+}

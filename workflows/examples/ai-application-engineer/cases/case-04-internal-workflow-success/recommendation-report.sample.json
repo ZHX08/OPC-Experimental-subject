@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "rep-aie-20260405-004",
+  "report_title": "AI 应用工程师候选人推荐报告 - 刘明",
+  "jd_id": "jd-aie-20260405-004",
+  "candidate_id": "cand-liu-ming-004",
+  "candidate_name": "刘明",
+  "role_title": "AI 应用工程师（内部流程自动化）",
+  "headline": {
+    "decision": "recommend",
+    "summary": "候选人在内部流程自动化上有更完整的工程证据，适合做需要系统集成、监控和回滚的 AI 应用工程师。",
+    "overall_score": 9.0
+  },
+  "scenario_context": {
+    "business_scenario": "采购、法务和运营需要把审批、摘要和流转做成可审计的 AI 工作流。",
+    "product_stage": "1-10",
+    "target_users": [
+      "采购",
+      "法务",
+      "运营",
+      "审批主管"
+    ],
+    "success_standard": "内部试点能稳定运行，人工补字段和摘要整理时间明显下降。",
+    "constraints": [
+      "接 ERP / OA / 审批系统",
+      "必须保留审计与回滚",
+      "流程失败不能影响业务流转"
+    ]
+  },
+  "match_overview": {
+    "strengths": [
+      "有稳定上线的内部助手",
+      "会做 workflow 和 fallback",
+      "监控与回滚都比较完整"
+    ],
+    "gaps": [
+      "业务术语可继续深挖",
+      "跨部门推广经验可追问"
+    ],
+    "overall_assessment": "这是偏工程落地的强匹配候选人。"
+  },
+  "risk_analysis": {
+    "risks": [
+      "业务理解不够行业化",
+      "若流程变复杂，需求边界要控制"
+    ],
+    "fallback_and_escapes": [
+      "规则模板回退",
+      "审批人确认",
+      "模型异常时直接切换到固定摘要"
+    ]
+  },
+  "recommendation": {
+    "decision": "recommend",
+    "reason": "工程证据、上线状态和监控回滚都符合岗位核心要求。",
+    "next_step": "进入面试，重点追问业务理解与跨团队协作。"
+  }
+}

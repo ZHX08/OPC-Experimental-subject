@@ -48,5 +48,6 @@
 ## 当前补齐情况
 
 - 已补 `workflows/examples/ai-application-engineer/` 端到端样例链路
+- 已新增 `cases/` 对照样例，覆盖推荐通过与失败样例
 - 已将 feedback capture / store 显式接入 `workflows/definitions/recruiting-jd-to-shortlist.yaml`
 - 现在可以直接沿着 `JD → 匹配评估 → 推荐报告 → feedback` 跑最小可用闭环

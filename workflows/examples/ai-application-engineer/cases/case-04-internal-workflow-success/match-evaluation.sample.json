@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "me-aie-20260405-004",
+  "jd_id": "jd-aie-20260405-004",
+  "candidate_id": "cand-liu-ming-004",
+  "candidate_snapshot": {
+    "name": "刘明",
+    "current_title": "后端工程师 / AI 工作流工程师",
+    "current_company": "协作流科技",
+    "years_experience": 6.1,
+    "location": "杭州",
+    "target_role": "AI 应用工程师"
+  },
+  "recommendation": "recommend",
+  "overall_score": 9.0,
+  "match_summary": "强推：候选人有内部流程自动化的真实上线经验，工程、监控和回滚证据都比较完整。",
+  "must_have_checks": [
+    {
+      "requirement": "真实 AI 应用经验",
+      "status": "met",
+      "evidence": "做过采购审批助手和合同摘要。"
+    },
+    {
+      "requirement": "能说明上线或准上线状态",
+      "status": "met",
+      "evidence": "采购审批助手已稳定运行 5 个多月。"
+    },
+    {
+      "requirement": "具备工程实现能力",
+      "status": "met",
+      "evidence": "使用 Python、FastAPI、SQLAlchemy、RabbitMQ、PostgreSQL。"
+    },
+    {
+      "requirement": "理解 fallback / 日志 / 评测",
+      "status": "met",
+      "evidence": "有规则 fallback、监控面板、抽样复核与回滚。"
+    },
+    {
+      "requirement": "能把业务问题拆成流程",
+      "status": "met",
+      "evidence": "把审批字段抽取、ERP 查询、摘要生成和升级流转拆开。"
+    }
+  ],
+  "strengths": [
+    "工程链路完整",
+    "有监控与回滚",
+    "系统集成能力强"
+  ],
+  "gaps": [
+    "业务术语理解可继续深挖",
+    "需要验证跨部门推进经验"
+  ],
+  "follow_up_questions": [
+    "你如何在失败时回滚到规则模板？",
+    "ERP / OA 接口如何监控？",
+    "怎么证明性能和稳定性？"
+  ]
+}

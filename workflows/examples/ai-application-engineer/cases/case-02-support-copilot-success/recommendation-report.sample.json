@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "rep-aie-20260405-002",
+  "report_title": "AI 应用工程师候选人推荐报告 - 王祈",
+  "jd_id": "jd-aie-20260405-002",
+  "candidate_id": "cand-wang-qi-002",
+  "candidate_name": "王祈",
+  "role_title": "AI 应用工程师（客服 Copilot）",
+  "headline": {
+    "decision": "recommend",
+    "summary": "候选人具备客服 Copilot 的真实上线经验，能做 RAG、workflow、评测和反馈回流，属于强匹配。",
+    "overall_score": 8.7
+  },
+  "scenario_context": {
+    "business_scenario": "客服团队需要把工单处理、政策检索和建议回复做成稳定的 AI 辅助工作流。",
+    "product_stage": "1-10",
+    "target_users": [
+      "客服专员",
+      "售后支持",
+      "质检"
+    ],
+    "success_standard": "8 周内交付可上线原型，回复建议可用，工单处理时长下降 30% 以上。",
+    "constraints": [
+      "接入 CRM 与工单系统",
+      "保留审计与权限控制",
+      "高风险问题必须人工升级"
+    ]
+  },
+  "match_overview": {
+    "strengths": [
+      "有稳定运行的客服 Copilot",
+      "有抽样复核与升级流转",
+      "对成本、延迟和 fallback 有工程意识"
+    ],
+    "gaps": [
+      "监控告警细节可继续追问",
+      "跨团队上线流程还可展开"
+    ],
+    "overall_assessment": "这是一个和 JD 高度对齐的候选人，推荐进入下一轮。"
+  },
+  "risk_analysis": {
+    "risks": [
+      "真实上线规模需要继续确认",
+      "高峰期容量与响应时间需补充数据"
+    ],
+    "fallback_and_escapes": [
+      "检索失败回退到人工建议模板",
+      "高风险工单强制人工确认",
+      "模型异常时切换固定摘要模板"
+    ]
+  },
+  "recommendation": {
+    "decision": "recommend",
+    "reason": "候选人有生产证据，且把反馈回流做成了流程。",
+    "next_step": "进入面试，重点验证评测方法、告警机制和复杂工单兜底。"
+  }
+}

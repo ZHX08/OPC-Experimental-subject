@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "me-aie-20260405-003",
+  "jd_id": "jd-aie-20260405-003",
+  "candidate_id": "cand-chen-che-003",
+  "candidate_snapshot": {
+    "name": "陈澈",
+    "current_title": "prompt 运营 / 内容策划",
+    "current_company": "星火内容工作室",
+    "years_experience": 2.8,
+    "location": "深圳",
+    "target_role": "AI 应用工程师"
+  },
+  "recommendation": "reject",
+  "overall_score": 5.3,
+  "match_summary": "不推荐：候选人更像 prompt 运营或内容策划，不满足 AI 应用工程师对工程落地、上线与评测闭环的要求。",
+  "must_have_checks": [
+    {
+      "requirement": "真实 AI 应用经验",
+      "status": "partial",
+      "evidence": "有试用级别的提案 prompt 库，但没有生产系统。"
+    },
+    {
+      "requirement": "能说明上线或准上线状态",
+      "status": "fail",
+      "evidence": "没有独立上线的 AI 应用。"
+    },
+    {
+      "requirement": "具备工程实现能力",
+      "status": "fail",
+      "evidence": "缺少后端、部署和接口集成经验。"
+    },
+    {
+      "requirement": "理解 fallback / 日志 / 评测",
+      "status": "partial",
+      "evidence": "有人工对比，但没有系统化指标。"
+    },
+    {
+      "requirement": "能把业务问题拆成流程",
+      "status": "met",
+      "evidence": "能整理销售提案流程，但停留在文案侧。"
+    }
+  ],
+  "strengths": [
+    "理解销售场景",
+    "会做 prompt 模板和文案整理"
+  ],
+  "gaps": [
+    "没有生产级工程证据",
+    "没有稳定上线和回流记录",
+    "没有说明自己负责的代码模块"
+  ],
+  "follow_up_questions": [
+    "你写过哪些生产代码？",
+    "你怎么证明项目上线了？",
+    "你怎么做评测和 fallback？"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "jd-aie-20260405-002",
+  "role_family": "AI 应用工程师",
+  "role_title": "AI 应用工程师（客服 Copilot）",
+  "aliases": [
+    "LLM 应用工程师",
+    "客服 AI 工程师"
+  ],
+  "seniority": "mid-senior",
+  "employment_type": "full-time",
+  "location": "深圳",
+  "remote_policy": "混合办公，支持远程协作",
+  "business_context": {
+    "product_stage": "1-10",
+    "product_type": "售后客服 Copilot",
+    "target_users": [
+      "客服专员",
+      "售后支持",
+      "质检",
+      "主管"
+    ],
+    "problem_statement": "客服同学需要在高频工单里快速定位政策、生成建议回复、补全工单摘要，但当前资料分散在 CRM、知识库和历史记录里。",
+    "success_definition": "8 周内完成首版上线，工单摘要和回复建议可用，平均处理时长下降 30% 以上，人工兜底流程清晰。",
+    "deployment_context": "需要接入 CRM、工单系统和知识库，保留审计与权限控制。"
+  },
+  "responsibilities": [
+    "负责客服 Copilot 的需求拆解、方案设计与落地实现",
+    "实现 Prompt、RAG、工具调用、结构化输出与工作流编排",
+    "建立离线评测集、线上抽样复核和反馈回流机制",
+    "与客服主管、质检和产品协作，处理高风险回答与升级流转",
+    "控制响应延迟、成本和异常兜底"
+  ],
+  "must_have": {
+    "skills": [
+      "Python 或 Node.js",
+      "Prompt / RAG / workflow / tool calling",
+      "日志、评测、反馈回流",
+      "上线与 fallback 设计"
+    ],
+    "experience": [
+      "至少 1 个 AI 应用从 demo 走到上线或准上线",
+      "做过客服、工单、知识库或业务自动化项目"
+    ],
+    "evidence": [
+      "上线说明或用户数",
+      "评测记录或 A/B 结果",
+      "回流样例或复盘文档"
+    ],
+    "verification_signals": [
+      "能讲清 chunking / rerank / confidence 阈值",
+      "能讲清人工升级与兜底",
+      "能说明自己负责的模块边界"
+    ]
+  },
+  "nice_to_have": {
+    "skills": [
+      "LangGraph / Dify / OpenAI SDK / MCP",
+      "在线监控、人工复核、灰度发布"
+    ],
+    "experience": [
+      "客服场景、工单自动化、售后知识助手",
+      "有 CRM / 工单系统集成经验"
+    ],
+    "evidence": [
+      "评测表",
+      "用户反馈摘要",
+      "版本变更记录"
+    ]
+  },
+  "evaluation_focus": [
+    "业务理解与场景拆解",
+    "LLM 应用工程能力",
+    "RAG / Prompt / Workflow 设计",
+    "评测、反馈、稳定性与成本控制",
+    "沟通协作与表达"
+  ],
+  "success_metrics": [
+    "工单平均处理时长下降 30%+",
+    "建议回复采纳率稳定提升",
+    "复杂问题升级路径明确",
+    "线上可追踪、可回滚、可审计"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "rep-aie-20260405-003",
+  "report_title": "AI 应用工程师候选人推荐报告 - 陈澈",
+  "jd_id": "jd-aie-20260405-003",
+  "candidate_id": "cand-chen-che-003",
+  "candidate_name": "陈澈",
+  "role_title": "AI 应用工程师（销售提案生成）",
+  "headline": {
+    "decision": "reject",
+    "summary": "候选人擅长 prompt 和内容整理，但缺少工程落地、上线与评测闭环证据，不符合 AI 应用工程师的核心要求。",
+    "overall_score": 5.3
+  },
+  "scenario_context": {
+    "business_scenario": "销售需要把客户访谈快速转成提案初稿。",
+    "product_stage": "0-1",
+    "target_users": [
+      "销售",
+      "售前"
+    ],
+    "success_standard": "在 6 周内交付可用原型，并且能解释如何验证准确率和事实性。",
+    "constraints": [
+      "提案内容需要审计",
+      "错误回答不能直接外发"
+    ]
+  },
+  "match_overview": {
+    "strengths": [
+      "理解销售文案流程",
+      "会维护 prompt 模板"
+    ],
+    "gaps": [
+      "没有生产系统",
+      "没有工程实现和上线证据",
+      "没有系统化评测"
+    ],
+    "overall_assessment": "更适合 prompt 运营或内容策划，不建议按 AI 应用工程师推进。"
+  },
+  "risk_analysis": {
+    "risks": [
+      "把 prompt 能力误判成工程能力",
+      "上线后缺少兜底与审计"
+    ],
+    "not_fit_tasks": [
+      "生产级 AI 应用开发",
+      "需要接口集成与部署的岗位"
+    ],
+    "fallback_and_escapes": [
+      "不作为推荐对象推进",
+      "如要保留，可转内容/运营侧角色"
+    ]
+  },
+  "recommendation": {
+    "decision": "reject",
+    "reason": "缺少 AI 应用工程师最关键的证据：上线、工程、评测、回流。",
+    "next_step": "停止推进到面试，若需要可转为 prompt 运营方向。"
+  }
+}
