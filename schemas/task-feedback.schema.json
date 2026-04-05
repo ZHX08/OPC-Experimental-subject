@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskFeedback",
+  "type": "object",
+  "required": ["task_type", "input_snapshot", "ai_output", "final_output", "accepted"],
+  "properties": {
+    "task_type": { "type": "string" },
+    "input_snapshot": { "type": "string" },
+    "ai_output": { "type": "string" },
+    "edited_output": { "type": "string" },
+    "final_output": { "type": "string" },
+    "accepted": { "type": "boolean" },
+    "score": { "type": "number", "minimum": 0, "maximum": 10 },
+    "failure_reason": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

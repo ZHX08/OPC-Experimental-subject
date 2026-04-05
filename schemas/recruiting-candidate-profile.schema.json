@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RecruitingCandidateProfile",
+  "type": "object",
+  "required": ["name", "target_role", "years_experience"],
+  "properties": {
+    "name": { "type": "string" },
+    "target_role": { "type": "string" },
+    "current_company": { "type": "string" },
+    "current_title": { "type": "string" },
+    "years_experience": { "type": "number" },
+    "location": { "type": "string" },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "industry_background": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "strengths": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "salary_expectation": { "type": "string" }
+  }
+}

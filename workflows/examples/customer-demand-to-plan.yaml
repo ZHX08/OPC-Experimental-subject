@@ -1,0 +1,22 @@
+name: customer-demand-to-plan
+trigger: 用户提交需求描述
+inputs:
+  - customer_profile
+  - dialogue_history
+  - business_goal
+retrieve:
+  - knowledge/base
+  - knowledge/cases
+  - templates/reports
+steps:
+  - extract_intent
+  - classify_customer
+  - retrieve_examples
+  - draft_output
+  - risk_check
+  - final_format
+outputs:
+  - summary
+  - detailed_plan
+  - risk_notes
+human_review: true

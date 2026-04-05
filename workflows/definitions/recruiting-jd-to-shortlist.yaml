@@ -1,0 +1,23 @@
+name: recruiting-jd-to-shortlist
+trigger: 用户提交 JD 与候选人简历
+inputs:
+  - jd_text
+  - candidate_resume
+  - optional_notes
+retrieve:
+  - verticals/recruiting
+  - knowledge/base
+  - templates/prompts
+  - templates/reports
+steps:
+  - jd_decompose
+  - extract_candidate_profile
+  - compare_fit
+  - identify_risks
+  - draft_recommendation_report
+  - human_review
+outputs:
+  - jd_summary
+  - fit_assessment
+  - recommendation_report
+human_review: true
