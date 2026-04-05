@@ -17,6 +17,9 @@
 - 最终采用结论
 - 失败原因 / 改进动作
 
+其中 `feedback-case-04-internal-workflow-success.md` 也被用于
+`verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/` 的客户沟通样板。
+
 ## SQLite 映射
 
 同一组反馈样例已经写入 `data/direction-priority-db/feedback_case_map`，字段包含：

@@ -5,16 +5,21 @@
 ## 当前包
 
 - `internal-process-automation/`：内部流程自动化最小可卖包
+  - `sell-sheet.md`：客户可读的一页售前材料
+  - `case-study.md`：客户可读的一页案例材料
+  - `pricing-pilot.md`：客户可读的一页报价逻辑 / 试点方案
+  - `risk-boundary.md`：边界与兜底说明
+  - `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：支撑材料
 
 ## 用法
 
 先看 `internal-process-automation/README.md`，再看：
-- 成功案例
-- 失败对照
-- ROI 说明
-- 一页方案
+- sell sheet
+- case study
+- pricing / pilot proposal
 - 风险边界
+- 成功 / 失败对照
 
 ## 结论
 
-这里放的是“样板雏形”，用于内部演示、客户沟通和复盘沉淀，不是最终产品。
+这里放的是“样板雏形”到“客户沟通可用版”的过渡层，适合内部演示、客户沟通和复盘沉淀，不是最终产品。

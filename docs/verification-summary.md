@@ -8,6 +8,7 @@ Scope: OPC-Experimental-subject recruiting vertical and AI application engineer 
 - 已有：知识底座、模板、SOP、工作流定义、反馈规范、种子内容、端到端样例链路。
 - 新增：AI 应用工程师 JD 样本、简历样本、匹配评估、推荐报告、feedback 回流记录。
 - 追加：内部流程自动化的 case card / 规则卡 / 失败模式 / 可复用规则，以及最小可卖包。
+- 再追加：面向客户沟通的 sell sheet / case study / pricing pilot 一页材料。
 - 风险：后续仍可继续补更多真实样本，但当前最小闭环已经形成。
 
 ## B. Schema 结构与字段合理性

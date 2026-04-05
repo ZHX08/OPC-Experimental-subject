@@ -11,6 +11,10 @@
 ## 当前聚焦
 
 - `internal-process-automation/`：内部流程自动化
+  - 对应成功 / 失败 case card
+  - 对应硬门槛 rule card
+  - 对应 failure modes / reusable rules
+  - 这些内容已经和 sell-pack 的客户沟通材料对齐
 
 ## 读法
 

@@ -87,6 +87,7 @@
 - 显式 feedback 回流步骤
 - 内部流程自动化的 case card / 规则卡 / 失败模式 / 可复用规则
 - 内部流程自动化最小可卖包
+- 内部流程自动化客户沟通版材料（sell sheet / case study / pricing pilot）
 - 反馈回流与 SQLite 方向优先级数据库的桥接
 
 ---

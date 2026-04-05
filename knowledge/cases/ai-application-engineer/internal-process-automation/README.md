@@ -36,3 +36,4 @@
 - 推荐报告：直接引用 case card 里的证据链
 - 销售样板：用成功案例 + 失败对照说明边界
 - 复盘沉淀：把 human_edits / reuse_score / roi_signal 写回数据库
+- 客户沟通：看 sell-pack/internal-process-automation/ 里的 sell sheet、case study、pricing pilot

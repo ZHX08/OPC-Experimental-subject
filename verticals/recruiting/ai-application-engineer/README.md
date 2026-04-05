@@ -23,6 +23,7 @@
 - `schemas/match-evaluation.schema.json`
 - `schemas/recommendation-report.schema.json`
 - `schemas/feedback.schema.json`
+- `sell-pack/internal-process-automation/`：内部流程自动化的客户沟通包
 
 ## 设计原则
 
@@ -52,3 +53,4 @@
 - 已将 feedback capture / store 显式接入 `workflows/definitions/recruiting-jd-to-shortlist.yaml`
 - 已补 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/` 最小可卖包
 - 现在可以直接沿着 `JD → 匹配评估 → 推荐报告 → feedback` 跑最小可用闭环
+- 其中内部流程自动化方向已经补到可直接对外讲的 sell sheet / case study / pricing pilot

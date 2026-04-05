@@ -58,4 +58,16 @@
 - `knowledge/base/recruiting/screening-standards.md`
 - `verticals/recruiting/seed-content-plan.md`
 - `verticals/recruiting/ai-application-engineer/`（AI 应用工程师结构化 schema pack）
-- `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/`（内部流程自动化最小可卖包）
+- `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/`（AI 应用工程师内部流程自动化客户沟通包）
+
+---
+
+## 现在的判断
+
+AI 应用工程师方向已经不只是“岗位画像”了，而是补出了：
+- schema
+- 样例链路
+- 反馈回流
+- 内部流程自动化可卖样板
+
+这意味着它已经可以继续向“客户沟通包 / 试点方案 / 真实案例沉淀”推进，而不是再横向开新方向。
