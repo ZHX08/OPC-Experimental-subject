@@ -36,6 +36,16 @@
 - `reuse_score`：反馈复用价值
 - `roi_signal`：反馈对应的价值信号
 
+## 试点证据接入
+
+对于 **AI 应用工程师 / 内部流程自动化**，新的试点证据模板可以作为 `feedback_case_map` 的上游输入：
+
+- 试点前基线与验收标准 → 帮助确认 `roi_signal` 是否可信
+- 试点中人工介入 / fallback / 审计日志 → 帮助写清 `failure_reason` / `human_edits`
+- 试点后 ROI / 效率 / 错误率 / 扩展判断 → 帮助计算 `reuse_score` 和 `should_deepen`
+
+也就是说，这套模板不是单独存档，而是为了让方向优先级数据库更容易判断“值不值得继续加码”。
+
 ## 使用方式
 
 ```bash

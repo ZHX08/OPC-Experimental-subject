@@ -8,6 +8,7 @@
   - `sell-sheet.md`：客户可读的一页售前材料
   - `case-study.md`：客户可读的一页案例材料
   - `pricing-pilot.md`：客户可读的一页报价逻辑 / 试点方案
+  - `pilot-evidence/`：真实试点证据模板包
   - `risk-boundary.md`：边界与兜底说明
   - `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：支撑材料
 
@@ -22,4 +23,4 @@
 
 ## 结论
 
-这里放的是“样板雏形”到“客户沟通可用版”的过渡层，适合内部演示、客户沟通和复盘沉淀，不是最终产品。
+这里放的是“样板雏形”到“客户沟通可用版 / 可进入真实试点版”的过渡层，适合内部演示、客户沟通和复盘沉淀，不是最终产品。

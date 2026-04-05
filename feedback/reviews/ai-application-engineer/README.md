@@ -20,6 +20,10 @@
 其中 `feedback-case-04-internal-workflow-success.md` 也被用于
 `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/` 的客户沟通样板。
 
+如果未来要从真实试点回流，建议先用
+`verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/pilot-evidence/`
+把前 / 中 / 后证据收齐，再整理成 feedback 样例。
+
 ## SQLite 映射
 
 同一组反馈样例已经写入 `data/direction-priority-db/feedback_case_map`，字段包含：

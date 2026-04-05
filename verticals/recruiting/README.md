@@ -59,6 +59,7 @@
 - `verticals/recruiting/seed-content-plan.md`
 - `verticals/recruiting/ai-application-engineer/`（AI 应用工程师结构化 schema pack）
 - `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/`（AI 应用工程师内部流程自动化客户沟通包）
+- `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/pilot-evidence/`（内部流程自动化真实试点证据模板包）
 
 ---
 

@@ -14,8 +14,9 @@
 1. `sell-sheet.md`：一页讲清楚这个方向能卖什么
 2. `case-study.md`：一页讲清楚一个匿名试点样板
 3. `pricing-pilot.md`：一页讲清楚报价逻辑和试点方案
-4. `risk-boundary.md`：一页讲清楚边界与兜底
-5. `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：作为支撑材料和旧版参考
+4. `pilot-evidence/`：试点前 / 中 / 后证据模板、指标口径和执行清单
+5. `risk-boundary.md`：一页讲清楚边界与兜底
+6. `success-case.md` / `failure-case.md` / `roi.md` / `solution-one-pager.md`：作为支撑材料和旧版参考
 
 ## 当前可用结论
 
@@ -28,6 +29,7 @@
 - `sell-sheet.md`：客户可读的一页售前材料
 - `case-study.md`：客户可读的一页案例材料
 - `pricing-pilot.md`：客户可读的一页报价逻辑 / 试点方案
+- `pilot-evidence/`：真实试点证据模板包
 - `success-case.md`：成功案例
 - `failure-case.md`：失败对照
 - `roi.md`：ROI / 价值说明
@@ -44,4 +46,4 @@
 
 ## 结论
 
-这套包已经从“样板雏形”升级到**可用于客户沟通**的程度，下一步主要是继续补真实试点证据，而不是再横向扩方向。
+这套包已经从“样板雏形”升级到**可用于客户沟通并进入真实试点**的程度；现在新增的试点证据模板，可以把前 / 中 / 后的证据、指标和执行过程接住，下一步主要是继续补真实试点数据，而不是再横向扩方向。
