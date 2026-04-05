@@ -16,3 +16,15 @@
 - 人工修改点
 - 最终采用结论
 - 失败原因 / 改进动作
+
+## SQLite 映射
+
+同一组反馈样例已经写入 `data/direction-priority-db/feedback_case_map`，字段包含：
+- `case_id`
+- `direction_id`
+- `success_failure`
+- `failure_reason`
+- `human_edits`
+- `reuse_score`
+- `roi_signal`
+- `should_deepen`

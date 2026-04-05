@@ -1,19 +1,23 @@
 name: recruiting-jd-to-shortlist
-trigger: 用户提交 JD 与候选人简历
+scope: AI 应用工程师
+trigger: 用户提交 AI 应用工程师 JD 与候选人简历
 inputs:
   - jd_text
   - candidate_resume
   - optional_notes
 retrieve:
-  - verticals/recruiting
-  - knowledge/base
+  - verticals/recruiting/ai-application-engineer
+  - knowledge/base/recruiting
+  - knowledge/cases/ai-application-engineer
+  - feedback/reviews/ai-application-engineer
   - templates/prompts
   - templates/reports
 steps:
-  - jd_decompose
-  - extract_candidate_profile
+  - normalize_role_scope
+  - extract_business_scenario
+  - extract_engineering_evidence
   - compare_fit
-  - identify_risks
+  - hard_gate_review
   - draft_recommendation_report
   - human_review
   - capture_human_feedback
@@ -21,10 +25,111 @@ steps:
 outputs:
   - jd_summary
   - fit_assessment
+  - hard_gate_result
   - recommendation_report
   - feedback_record
 human_review: true
 feedback_capture: true
 feedback_stage: recommendation_report
-feedback_store:
-  - feedback/reviews/ai-application-engineer/feedback-loop-sample.md
+hard_gates:
+  scenario:
+    required:
+      - business_scenario
+      - target_users
+      - success_standard
+      - system_of_record
+      - deployment_context
+    missing_action: ask_for_more_info
+  engineering:
+    required:
+      - engineering_evidence
+      - deployment_status
+      - monitoring
+      - rollback
+      - audit
+    missing_action: downgrade_to_cautious_recommend
+  evaluation:
+    required:
+      - evaluation_plan
+      - feedback_loop
+      - failure_modes
+      - fallback_and_escapes
+    missing_action: ask_for_more_info
+  economics:
+    required:
+      - cost_boundary
+      - latency_boundary
+      - roi_signal
+    missing_action: downgrade_to_cautious_recommend
+  feedback_bridge:
+    required:
+      - case_id
+      - direction_id
+      - success_failure
+      - failure_reason
+      - human_edits
+      - reuse_score
+      - roi_signal
+      - should_deepen
+    missing_action: persist_partial_and_flag
+decision_rules:
+  strong_recommend:
+    all_hard_gates: [scenario, engineering, evaluation, economics, feedback_bridge]
+    require:
+      - real_project
+      - live_or_pilot_deployment
+      - audit_log
+      - rollback_path
+      - human_review_points
+  recommend:
+    must_have:
+      - scenario
+      - engineering
+      - evaluation
+    allow_missing:
+      - scaled_metrics
+      - exact_cost
+  cautious_recommend:
+    allow_missing:
+      - deployment_scale
+      - exact_cost
+    block_missing:
+      - fallback
+      - audit
+      - system_of_record
+  do_not_recommend:
+    any_missing:
+      - real_project
+      - fallback
+      - audit
+      - human_review
+      - evidence
+stage_rules:
+  jd_intake:
+    if_missing:
+      - business_scenario
+      - success_standard
+      - deployment_context
+    action: ask_for_more_info
+  match_evaluation:
+    if_missing:
+      - must_have_checks
+      - engineering_evidence
+      - risk_analysis
+    action: downgrade_or_request_revision
+  recommendation_report:
+    if_missing:
+      - scenario_context
+      - engineering_evidence
+      - evaluation_plan
+      - risk_analysis
+    action: require_revision
+  feedback_capture:
+    if_missing:
+      - case_id
+      - direction_id
+      - success_failure
+      - human_edits
+      - reuse_score
+      - roi_signal
+    action: store_partial_and_flag

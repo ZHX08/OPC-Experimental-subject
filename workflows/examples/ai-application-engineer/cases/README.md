@@ -20,6 +20,7 @@
   - 场景：审批、采购、文档流转
   - 结果：推荐通过
   - 对应反馈：`feedback/reviews/ai-application-engineer/feedback-case-04-internal-workflow-success.md`
+  - 备注：这条线最适合继续沉淀成可卖样板
 
 ## 读法
 

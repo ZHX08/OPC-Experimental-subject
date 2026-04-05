@@ -29,6 +29,21 @@
     "jd_id": { "type": "string" },
     "candidate_id": { "type": "string" },
     "report_id": { "type": "string" },
+    "case_id": { "type": "string" },
+    "direction_id": { "type": "string" },
+    "direction_path": { "type": "string" },
+    "success_failure": {
+      "type": "string",
+      "enum": ["success", "failure", "mixed"]
+    },
+    "failure_reason": { "type": "string" },
+    "human_edits": { "type": "string" },
+    "reuse_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "roi_signal": { "type": "string" },
+    "should_deepen": { "type": "integer", "enum": [0, 1] },
+    "linked_jd_id": { "type": "string" },
+    "linked_candidate_id": { "type": "string" },
+    "linked_report_id": { "type": "string" },
     "workflow_stage": {
       "type": "string",
       "enum": [

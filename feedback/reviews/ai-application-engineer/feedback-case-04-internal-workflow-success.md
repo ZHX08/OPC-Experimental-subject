@@ -32,10 +32,17 @@
   "jd_id": "jd-aie-20260405-004",
   "candidate_id": "cand-liu-ming-004",
   "report_id": "rep-aie-20260405-004",
+  "case_id": "case-04",
+  "direction_id": "dir-aie-workflow",
+  "success_failure": "success",
+  "failure_reason": "",
+  "human_edits": "人工把这条线的关键词从‘工作流能力’修正为‘可审计、可回滚、可监控的上线系统’。",
+  "reuse_score": 0.91,
+  "roi_signal": "审批和流转时间下降",
+  "should_deepen": 1,
   "workflow_stage": "recommendation_report",
   "accepted": true,
   "score": 9.1,
-  "failure_reason": "",
-  "notes": "人工把这条线的关键词从‘工作流能力’修正为‘可审计、可回滚、可监控的上线系统’。"
+  "notes": "内部流程自动化是当前最强样板。"
 }
 ```

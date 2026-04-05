@@ -21,7 +21,9 @@
 - `case_asset`：案例文件映射
 - `direction_hit_log`：命中/检索频次明细
 - `direction_review`：方向级复盘与是否建议深化
-- `direction_deepening_radar`：方向雷达视图
+- `feedback_case_map`：反馈记录与案例 / 方向的映射
+- `direction_deepening_radar`：方向雷达视图，已带入反馈闭环摘要
+- `case_feedback_bridge`：单条反馈的明细桥接视图
 
 ## 关键字段
 
@@ -31,12 +33,15 @@
 - `hit_frequency`：命中频次
 - `should_deepen`：是否建议继续深化
 - `priority_score`：综合优先级
+- `reuse_score`：反馈复用价值
+- `roi_signal`：反馈对应的价值信号
 
 ## 使用方式
 
 ```bash
 python scripts/direction_priority_db.py init
 python scripts/direction_priority_db.py report
+python scripts/direction_priority_db.py feedback
 ```
 
 默认会把 SQLite 文件写到：
@@ -48,20 +53,27 @@ python scripts/direction_priority_db.py report
 ```bash
 python scripts/direction_priority_db.py init --db /tmp/direction-priority.sqlite3
 python scripts/direction_priority_db.py report --db /tmp/direction-priority.sqlite3
+python scripts/direction_priority_db.py feedback --db /tmp/direction-priority.sqlite3
 ```
 
 ## 你会看到什么
 
-报告会按优先级排序输出：
+`report` 会按优先级输出：
 - 哪些方向样本质量高
 - 哪些方向反馈结果好
 - 哪些方向命中频次更高
+- 哪些方向的反馈复用价值更高
 - 哪些方向建议继续深化
+
+`feedback` 会输出：
+- case_id / direction_id / success_failure 映射
+- failure_reason / human_edits
+- reuse_score / roi_signal / should_deepen
 
 ## 这套初版的作用
 
 它不是“完整数据平台”，只是一个可本地维护的轻量判断层：
 - 先把方向分清
 - 再把样本和反馈放进去
-- 再看命中频次和综合优先级
+- 再看命中频次、复用价值和综合优先级
 - 最后决定下一个要深挖的方向

@@ -58,3 +58,4 @@
 - `knowledge/base/recruiting/screening-standards.md`
 - `verticals/recruiting/seed-content-plan.md`
 - `verticals/recruiting/ai-application-engineer/`（AI 应用工程师结构化 schema pack）
+- `verticals/recruiting/ai-application-engineer/sell-pack/internal-process-automation/`（内部流程自动化最小可卖包）

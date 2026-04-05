@@ -175,6 +175,27 @@
         }
       }
     },
+    "ops_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deployment_status": { "type": "string" },
+        "monitoring": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rollback": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "audit": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "cost_boundary": { "type": "string" },
+        "latency_boundary": { "type": "string" }
+      }
+    },
     "evaluation_plan": {
       "type": "object",
       "additionalProperties": false,

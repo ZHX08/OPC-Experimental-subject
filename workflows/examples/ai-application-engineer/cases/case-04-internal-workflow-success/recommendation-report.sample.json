@@ -50,6 +50,26 @@
       "模型异常时直接切换到固定摘要"
     ]
   },
+  "ops_readiness": {
+    "deployment_status": "已在内部试点运行",
+    "monitoring": [
+      "失败率监控",
+      "人工接管率监控",
+      "接口超时告警"
+    ],
+    "rollback": [
+      "一键回退规则模板",
+      "草稿保留",
+      "异常单独标记"
+    ],
+    "audit": [
+      "输入留痕",
+      "人工改动留痕",
+      "模型版本留痕"
+    ],
+    "cost_boundary": "控制在内部试点可接受范围",
+    "latency_boundary": "审批摘要保持在可接受响应时延内"
+  },
   "recommendation": {
     "decision": "recommend",
     "reason": "工程证据、上线状态和监控回滚都符合岗位核心要求。",
